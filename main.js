@@ -10,6 +10,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initNavbarScroll();
   initSkillCards();
+  initFloatingTags();
   initAboutRoleCards();
   initAboutTabs();
   initWhatIDoScrollSelection();
@@ -41,6 +42,12 @@ function initNavbarScroll() {
   window.addEventListener('scroll', () => {
     if (!ticking) {
       window.requestAnimationFrame(() => {
+        const desktopNav = document.getElementById('desktopNav');
+        if (desktopNav && desktopNav.classList.contains('mobile-open')) {
+          ticking = false;
+          return;
+        }
+
         const currentScrollY = window.scrollY;
         const scrollDelta = currentScrollY - lastScrollY;
 
@@ -312,34 +319,79 @@ function initSkillCards() {
 }
 
 /**
+ * Initialize Floating Dotted Tag Chips Click/Tap Interaction
+ * Tapping a chip increases its opacity to 100%, tapping outside or another resets it
+ */
+function initFloatingTags() {
+  const tags = document.querySelectorAll('.floating-tag-chip');
+  if (!tags.length) return;
+
+  tags.forEach(tag => {
+    tag.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isCurrentlyActive = tag.classList.contains('is-active');
+      tags.forEach(t => t.classList.remove('is-active'));
+      if (!isCurrentlyActive) {
+        tag.classList.add('is-active');
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.floating-tag-chip')) {
+      tags.forEach(t => t.classList.remove('is-active'));
+    }
+  });
+}
+
+/**
  * Initialize Mobile Hamburger Navigation Toggle
  */
 function initMobileMenu() {
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const desktopNav = document.getElementById('desktopNav');
+  const navBar = document.querySelector('.nav-bar');
 
   if (!hamburgerBtn || !desktopNav) return;
+
+  function closeMenu() {
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+    hamburgerBtn.classList.remove('is-active');
+    desktopNav.classList.remove('mobile-open');
+    document.body.classList.remove('menu-open');
+  }
+
+  function openMenu() {
+    hamburgerBtn.setAttribute('aria-expanded', 'true');
+    hamburgerBtn.classList.add('is-active');
+    desktopNav.classList.add('mobile-open');
+    document.body.classList.add('menu-open');
+    if (navBar) {
+      navBar.classList.remove('nav-hidden');
+    }
+  }
 
   hamburgerBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     const isExpanded = hamburgerBtn.getAttribute('aria-expanded') === 'true';
-    hamburgerBtn.setAttribute('aria-expanded', String(!isExpanded));
-    desktopNav.classList.toggle('mobile-open');
+    if (isExpanded) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
   // Close mobile nav when clicking a link
   desktopNav.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
-      hamburgerBtn.setAttribute('aria-expanded', 'false');
-      desktopNav.classList.remove('mobile-open');
+      closeMenu();
     });
   });
 
   // Close mobile nav when clicking outside
   document.addEventListener('click', (e) => {
-    if (!e.target.closest('.nav-bar')) {
-      hamburgerBtn.setAttribute('aria-expanded', 'false');
-      desktopNav.classList.remove('mobile-open');
+    if (!e.target.closest('.nav-bar') && desktopNav.classList.contains('mobile-open')) {
+      closeMenu();
     }
   });
 }

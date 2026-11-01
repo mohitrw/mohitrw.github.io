@@ -114,6 +114,11 @@ body {
   overflow-x: hidden;
 }
 
+body.menu-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
 /* --- Hero Section Container (Fixed Sticky Layer) --- */
 .hero-section {
   position: sticky;
@@ -287,6 +292,10 @@ body {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+.mobile-bg-svg {
+  display: none;
 }
 
 /* --- Main Hero Content Area --- */
@@ -671,192 +680,562 @@ body {
 /* Mobile Screens (max-width: 768px) */
 @media (max-width: 768px) {
   :root {
-    --hero-px: 1.25rem;
+    --hero-px: clamp(20px, 5.5vw, 28px);
   }
 
+  /* 1. Header: Increased height (90px), larger logo & hamburger icon, distinct bottom border separating header & hero */
   .nav-bar {
-    height: 64px;
+    height: 90px;
     padding: 0 var(--hero-px);
+    display: flex;
+    align-items: center;
+    background-color: var(--color-hero-base, #161616);
+    border-bottom: 1px solid #383838;
+    box-shadow: none;
+  }
+
+  .nav-bar.nav-scrolled {
+    background-color: rgba(22, 22, 22, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    z-index: 110;
+    position: relative;
   }
 
   .brand-logo .logo-img {
-    width: 46px;
+    width: 62px;
     height: auto;
   }
 
-  .nav-link.nav-link-canvas {
-    height: auto;
-    padding: 10px 18px;
-    width: auto;
+  /* Hamburger Menu Button: Scaled to match the visual presence and balance of the 62px logo */
+  .mobile-hamburger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 36px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 110;
+    position: relative;
   }
 
+  .hamburger-bar {
+    position: absolute;
+    left: 2px;
+    width: 40px;
+    height: 3.5px;
+    background-color: var(--color-text-white, #FFFFFF);
+    border-radius: 2px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.2s ease,
+                top 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center;
+  }
+
+  /* Resting state: 3 clean, evenly spaced horizontal bars */
+  .hamburger-bar:nth-child(1) {
+    top: 6px;
+  }
+
+  .hamburger-bar:nth-child(2) {
+    top: 16.25px;
+  }
+
+  .hamburger-bar:nth-child(3) {
+    top: 26.5px;
+  }
+
+  /* Morph hamburger lines into clean, symmetrical, perfectly centered 'X' cross */
+  .mobile-hamburger[aria-expanded="true"] .hamburger-bar:nth-child(1),
+  .mobile-hamburger.is-active .hamburger-bar:nth-child(1) {
+    top: 16.25px;
+    transform: rotate(45deg);
+  }
+
+  .mobile-hamburger[aria-expanded="true"] .hamburger-bar:nth-child(2),
+  .mobile-hamburger.is-active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .mobile-hamburger[aria-expanded="true"] .hamburger-bar:nth-child(3),
+  .mobile-hamburger.is-active .hamburger-bar:nth-child(3) {
+    top: 16.25px;
+    transform: rotate(-45deg);
+  }
+
+  /* Full-Screen Mobile Navigation Menu Overlay: Centered cluster of 4 items */
   .desktop-nav-links {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
-    right: 0;
-    background-color: var(--color-header-base);
-    /* #1C1C1C */
-    border-bottom: 1px solid var(--color-header-border);
-    padding: 1.5rem var(--hero-px);
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background-color: #141414;
+    padding: 90px 0 30px;
+    margin: 0;
     flex-direction: column;
-    gap: 1.25rem;
-    align-items: flex-start;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-    z-index: 50;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    box-sizing: border-box;
+    z-index: 100;
+    overflow-y: auto;
+    border: none;
+    box-shadow: none;
   }
 
   .desktop-nav-links.mobile-open {
     display: flex;
-    animation: fadeInUp 0.25s ease forwards;
+    animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  .mobile-hamburger {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 28px;
-    height: 20px;
-    padding: 2px;
-  }
-
-  .hamburger-bar {
-    display: block;
+  /* Big Prominent Centered Typography for Menu Items */
+  .desktop-nav-links .nav-link {
+    height: auto !important;
+    min-height: unset !important;
+    max-height: unset !important;
+    flex: 0 0 auto !important;
+    font-family: var(--font-body);
+    font-size: clamp(26px, 6.8vw, 32px);
+    font-weight: 500;
+    color: var(--color-text-white, #FFFFFF);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    padding: 10px 20px;
     width: 100%;
-    height: 2px;
-    background-color: var(--color-text-white);
-    border-radius: 2px;
-    transition: transform 0.25s ease, opacity 0.25s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
-  /* Fixed Hero Viewport Height for Mobile Browser address bar stability */
+  .desktop-nav-links .nav-link:hover,
+  .desktop-nav-links .nav-link:active {
+    opacity: 0.8;
+  }
+
+  /* Canvas Nav Option: Background color stretches fully to left & right edges, with strict 18px top/bottom padding */
+  .desktop-nav-links .nav-link.nav-link-canvas {
+    height: auto !important;
+    min-height: unset !important;
+    max-height: unset !important;
+    flex: 0 0 auto !important;
+    width: 100vw;
+    max-width: 100vw;
+    background-color: #000000;
+    padding: 18px 0 !important;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 0;
+  }
+
+  .desktop-nav-links .nav-canvas-dim {
+    color: #B8B8B8;
+  }
+
+  /* 2. Hero Section: Fixed/Sticky so subsequent sections (Projects) scroll over it */
   .hero-section {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     min-height: 100vh;
     min-height: 100svh;
-    height: 100svh;
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+    height: 100dvh;
+    overflow: hidden;
+    width: 100%;
   }
 
+  /* Decorative Background Lines: Curved diagonal cross pattern spanning full hero */
+  .hero-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .desktop-bg-svg {
+    display: none;
+  }
+
+  .mobile-bg-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .mobile-bg-svg path {
+    stroke: #262626;
+    stroke-width: 1.5px;
+    vector-effect: non-scaling-stroke;
+  }
+
+  /* Hero Content Area: Vertical spacing, bottom-aligned headline with ample bottom clearance */
   .hero-content-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    padding-top: 60px;
-    padding-bottom: clamp(1.8rem, 4vh, 2.5rem);
+    padding-top: 90px;
+    padding-bottom: max(3.5rem, calc(env(safe-area-inset-bottom, 24px) + 2.2rem));
     padding-left: var(--hero-px);
     padding-right: var(--hero-px);
+    box-sizing: border-box;
+    z-index: 10;
   }
 
+  /* 3. Floating Dotted Buttons: Genuine long dashes, decreased opacity (text & border) to not catch eyes, minimal shadow */
+  .floating-tag-chip {
+    position: absolute;
+    background-color: var(--color-hero-base, #161616);
+    /* Clean long dashes (10px dash, 7px space) via SVG border */
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%23666666' stroke-width='1.2' stroke-dasharray='10%2c 7' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e") !important;
+    border: none !important;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: clamp(14px, 3.8vw, 15.5px);
+    font-weight: 500;
+    color: #8C8C8C;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    z-index: 10;
+    opacity: 0.42;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    transition: opacity 0.3s ease, background-image 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease, color 0.3s ease;
+  }
+
+  /* When clicked/tapped: opacity increases fully, dashes brighten to crisp silver */
+  .floating-tag-chip:active,
+  .floating-tag-chip.is-active,
+  .floating-tag-chip:focus-visible {
+    opacity: 1;
+    color: #FFFFFF;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%23CCCCCC' stroke-width='1.5' stroke-dasharray='10%2c 7' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e") !important;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.03);
+  }
+
+  /* Badge 1 (Top Left/Center): 10+ Projects */
+  .tag-projects {
+    top: 21%;
+    left: 16%;
+    right: auto;
+  }
+
+  /* Badge 2 (Middle Right): AI-Assisted Design */
+  .tag-ai {
+    top: 41%;
+    right: 12%;
+    left: auto;
+  }
+
+  /* Badge 3 (Lower Left, comfortably above headline): Figma · Web · No-Code */
+  .tag-skills {
+    top: 58%;
+    left: 12%;
+    right: auto;
+  }
+
+  /* Mobile Animation: Horizontal fade-in only (no vertical translation, keeping stack strictly anchored to bottom) */
+  @keyframes fadeInRightMobile {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* 4. Right-Side Vertical Skill Cards Stack: Positioned near top with a dedicated gap below the header so UX and all cards are fully visible */
+  .skill-cards-stack {
+    position: absolute;
+    top: calc(90px + 22px) !important;
+    bottom: auto !important;
+    right: 0;
+    transform: none !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+    z-index: 25;
+    margin: 0;
+    padding: 0;
+    animation: fadeInRightMobile 0.75s ease 0.25s both !important;
+  }
+
+  .skill-card {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Increased heights (+10px top, +10px bottom): UX, UI, AI to 88px; Wix to 104px - identical in resting & hovering state */
+  .skill-card-body,
+  .skill-card[data-skill="ux"] .skill-card-body,
+  .skill-card[data-skill="ui"] .skill-card-body,
+  .skill-card[data-skill="ai"] .skill-card-body {
+    height: 88px !important;
+    width: 40px;
+    border-radius: 12px 0 0 12px;
+    background-color: #888888;
+    box-shadow: -2px 3px 10px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+
+  .skill-card[data-skill="wix"] .skill-card-body {
+    height: 104px !important;
+    width: 40px;
+    border-radius: 12px 0 0 12px;
+    background-color: #888888;
+    box-shadow: -2px 3px 10px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+
+  .skill-card-tab {
+    width: 40px;
+    min-width: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 0;
+    gap: 5px;
+    box-sizing: border-box;
+  }
+
+  .vert-letter {
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #161616;
+    line-height: 1.15;
+    text-align: center;
+    display: block;
+  }
+
+  .skill-tab-divider {
+    background-color: rgba(22, 22, 22, 0.3);
+    height: 60%;
+  }
+
+  /* Description paragraph text: fully visible and vertically centered inside the taller card */
+  .skill-card-text {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.35;
+    min-width: 220px;
+    max-width: 275px;
+    padding: 8px 14px 8px 10px;
+    color: #161616;
+    white-space: normal;
+    display: flex;
+    align-items: center;
+  }
+
+  /* On hover/active: height stays identically 88px / 104px, background stays #888888 */
+  .skill-card:hover .skill-card-body,
+  .skill-card:focus-visible .skill-card-body,
+  .skill-card.is-active .skill-card-body {
+    width: calc(100vw - 32px);
+    max-width: 310px;
+    background-color: #888888 !important;
+    box-shadow: -6px 6px 24px rgba(0, 0, 0, 0.55);
+  }
+
+  .skill-card.is-active .vert-letter,
+  .skill-card:hover .vert-letter {
+    color: #161616 !important;
+  }
+
+  .skill-card.is-active .skill-card-text,
+  .skill-card:hover .skill-card-text {
+    color: #161616 !important;
+  }
+
+  /* 5. Main Heading & Introduction: Increased UI/UX & Designr font, kept Web size, increased gap, moved underline & Hi Mohit downside */
   .hero-typography {
     max-width: 100%;
-    margin-bottom: 0.25rem;
+    position: relative;
+    z-index: 15;
+    margin-left: 14px;
+    margin-bottom: 20px;
   }
 
   .hero-headline {
-    font-size: clamp(2.35rem, 9.8vw, 3.2rem);
-    line-height: 1.08;
+    font-size: clamp(2.75rem, 11.5vw, 3.45rem);
+    line-height: 1;
     letter-spacing: -0.015em;
+    margin: 0;
+  }
+
+  .headline-uiux {
+    display: block;
+    font-weight: 700;
+    font-size: clamp(3.2rem, 13.8vw, 4.2rem);
+    line-height: 0.98;
+    color: #A4A4A4;
+    letter-spacing: -0.01em;
   }
 
   .headline-web-designr {
     display: flex;
     align-items: baseline;
-    gap: 0.16em;
+    gap: 0.42em;
     flex-wrap: nowrap;
-    margin-top: 0.04em;
+    margin-top: 0.08em;
   }
 
   .script-web {
-    font-size: 1.18em;
-    border-bottom-width: 2px;
-    padding-bottom: 2px;
+    font-family: var(--font-script);
+    font-size: clamp(2.6rem, 11vw, 3.2rem);
+    font-style: italic;
+    color: var(--color-text-white, #FFFFFF);
+    border-bottom: 2.5px solid var(--color-text-white, #FFFFFF);
+    padding-bottom: 7px;
+    line-height: 0.9;
+    display: inline-block;
+    transform: translateY(2px);
+  }
+
+  .heading-designr {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(3.2rem, 13.8vw, 4.2rem);
+    line-height: 0.98;
+    color: #A4A4A4;
+    letter-spacing: -0.01em;
   }
 
   .hero-subtitle {
-    font-size: clamp(15px, 4.2vw, 17px);
-    margin-top: 0.75rem;
-  }
-
-  /* Floating Tag Chips on Mobile: cleanly staggered, ample clearance */
-  .floating-tag-chip {
-    padding: 8px 16px;
-    font-size: 12.5px;
-    border-radius: 6px;
-  }
-
-  .tag-projects {
-    top: 14%;
-    left: 12%;
-  }
-
-  .tag-ai {
-    top: 25%;
-    right: 14%;
-    left: auto;
-  }
-
-  .tag-skills {
-    top: 37%;
-    left: 8%;
-  }
-
-  /* Right-Side Vertical Skill Cards Stack on Mobile */
-  .skill-cards-stack {
-    top: 22%;
-    right: 0;
-    transform: none;
-    gap: 7px;
-    z-index: 25;
-    animation: fadeInRight 0.75s ease 0.25s both;
-  }
-
-  .skill-card-body {
-    height: 42px;
-    width: 30px;
-    border-radius: 8px 0 0 8px;
-  }
-
-  .skill-card[data-skill="wix"] .skill-card-body {
-    height: 56px;
-  }
-
-  .skill-card-tab {
-    width: 30px;
-    min-width: 30px;
-  }
-
-  .vert-letter {
-    font-size: 11px;
-  }
-
-  .skill-card-text {
-    font-size: 11.5px;
-    min-width: 220px;
-    max-width: 270px;
-    padding: 6px 10px 6px 6px;
-  }
-
-  .skill-card:hover .skill-card-body,
-  .skill-card:focus-visible .skill-card-body,
-  .skill-card.is-active .skill-card-body {
-    width: calc(100vw - 24px);
-    max-width: 320px;
+    font-family: var(--font-body);
+    font-size: clamp(17px, 4.6vw, 19.5px);
+    color: var(--color-text-white, #FFFFFF);
+    margin-top: 1.55rem;
+    letter-spacing: 0.02em;
   }
 }
 
 /* Extra Small Mobile Screens (< 380px) */
 @media (max-width: 380px) {
   .hero-headline {
-    font-size: clamp(1.95rem, 9.2vw, 2.3rem);
+    font-size: clamp(2.3rem, 10.5vw, 2.7rem);
+  }
+
+  .headline-uiux,
+  .heading-designr {
+    font-size: clamp(2.55rem, 11.5vw, 3.1rem);
+  }
+
+  .script-web {
+    font-size: clamp(2.2rem, 9.8vw, 2.55rem);
+    padding-bottom: 5px;
+  }
+
+  .headline-web-designr {
+    gap: 0.35em;
   }
 
   .floating-tag-chip {
-    padding: 6px 12px;
-    font-size: 11px;
+    padding: 6px 13px;
+    font-size: 13px;
+  }
+
+  .hero-typography {
+    margin-left: 8px;
+    margin-bottom: 12px;
+  }
+
+  .hero-subtitle {
+    margin-top: 1.3rem;
+  }
+
+  .tag-projects {
+    left: 10%;
+    top: 20%;
   }
 
   .tag-ai {
-    right: 8%;
+    right: 6%;
+    top: 38%;
+  }
+
+  .tag-skills {
+    left: 8%;
+    top: 56%;
+  }
+
+  .skill-cards-stack {
+    top: calc(90px + 16px) !important;
+    bottom: auto !important;
+    transform: none !important;
+    animation: fadeInRightMobile 0.75s ease 0.25s both !important;
+    gap: 10px;
+  }
+
+  .skill-card-body,
+  .skill-card[data-skill="ux"] .skill-card-body,
+  .skill-card[data-skill="ui"] .skill-card-body,
+  .skill-card[data-skill="ai"] .skill-card-body {
+    height: 80px !important;
+    width: 38px;
+  }
+
+  .skill-card[data-skill="wix"] .skill-card-body {
+    height: 96px !important;
+    width: 38px;
+  }
+
+  .skill-card-tab {
+    width: 38px;
+    min-width: 38px;
+    padding: 10px 0;
+  }
+
+  .desktop-nav-links {
+    gap: 1.6rem;
+  }
+
+  .desktop-nav-links .nav-link {
+    font-size: clamp(24px, 7vw, 28px);
   }
 }
 
