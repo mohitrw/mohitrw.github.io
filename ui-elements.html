@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+  <title>Explore Mohit's Portfolio — Interactive 2D Canvas | UI/UX &amp; Web Design</title>
+  <meta name="description"
+    content="Explore Mohit's interactive 2D portfolio canvas featuring UI/UX design concepts, front-end coding projects, and hand-drawn creative sketches.">
+  <meta name="author" content="Mohit">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0C0C0C">
+  <link rel="canonical" href="https://mohitportfolio.com/ui-elements.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mohitportfolio.com/ui-elements.html">
+  <meta property="og:title" content="Explore Mohit's Portfolio — Interactive 2D Canvas">
+  <meta property="og:description"
+    content="Explore UI design elements, coding layouts, and sketches on an interactive 2D canvas.">
+  <meta property="og:image" content="https://mohitportfolio.com/Assets/UI%20Elements/UI%20Elements.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Caveat:wght@400;600&family=Roboto+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ui-canvas.css">
+</head>
+
+<body class="canvas-page-body">
+
+  <!-- Fixed Top Floating Navigation Bar -->
+  <header class="canvas-top-nav" aria-label="Canvas Navigation">
+    <div class="canvas-nav-left">
+      <a href="projects.html" class="canvas-back-btn" aria-label="Return to Projects page">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to Projects</span>
+      </a>
+      <a href="index.html" class="canvas-brand-logo" aria-label="Mohit — Home">
+        <img src="Assets/logo.svg" alt="Mohit Logo" class="canvas-logo-img" width="46" height="34">
+      </a>
+    </div>
+
+    <!-- Canvas Navigation Title Indicator -->
+    <div class="canvas-nav-center">
+      <span class="canvas-status-pill">Interactive Canvas • Drag to Pan</span>
+    </div>
+
+    <nav class="canvas-nav-links" aria-label="Site Navigation">
+      <a href="index.html" class="canvas-nav-link">Home</a>
+      <a href="ui-elements.html" class="canvas-nav-link nav-link-canvas active" aria-current="page"
+        aria-label="Interactive Canvas">Ca<span class="nav-canvas-dim">nva</span>s</a>
+      <a href="about.html" class="canvas-nav-link">AboutMe</a>
+      <a href="contact.html" class="canvas-nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Interactive 2D Canvas Viewport Container -->
+  <main class="canvas-viewport" id="canvasViewport" role="region" aria-label="Portfolio Interactive 2D Canvas">
+
+    <!-- Canvas Board Outer Dimension Wrapper (Maintains correct scrollable bounds when zoomed) -->
+    <div class="canvas-board-wrapper" id="canvasBoardWrapper">
+      <!-- The Expandable Canvas Board (3632px x 2648px) -->
+      <div class="canvas-board" id="canvasBoard">
+
+        <!-- Ambient Deep Background Shadows -->
+        <div class="canvas-bg-glows" aria-hidden="true">
+          <img src="Assets/Projects_BgShadow-opt.png" alt="" class="canvas-bg-shadow shadow-top-right">
+          <img src="Assets/Projects_BgShadow-opt.png" alt="" class="canvas-bg-shadow shadow-mid-left">
+          <img src="Assets/Projects_BgShadow-opt.png" alt="" class="canvas-bg-shadow shadow-bottom-right">
+          <img src="Assets/Projects_BgShadow-opt.png" alt="" class="canvas-bg-shadow shadow-center">
+        </div>
+
+        <!-- Organic Tingled Curved Dividing Lines (Separates Coding, Sketches, and UI Design Elements only) -->
+        <svg class="canvas-threads-layer" viewBox="0 0 3632 2648" fill="none" xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true">
+          <!-- Line 1: Tingled Vertical Line Separating Coding (Left) from Center & Bottom-Left -->
+          <path d="M 720,192 Q 750,492 710,822 T 730,1322 Q 700,1722 720,2122 T 710,2580"
+            stroke="rgba(255, 255, 255, 0.22)" stroke-width="2.2" stroke-dasharray="14 8" stroke-linecap="round" />
+
+          <!-- Line 2: Tingled Horizontal Line Separating Sketches (Top) from Center & UI Elements -->
+          <path d="M 720,602 Q 1150,582 1550,612 T 2180,592 Q 2750,612 3200,592 T 3580,602"
+            stroke="rgba(255, 255, 255, 0.2)" stroke-width="2.2" stroke-dasharray="14 8" stroke-linecap="round" />
+
+          <!-- Line 3: Tingled Vertical Line Separating UI Design Elements (Right) from Center -->
+          <path d="M 2180,592 Q 2210,922 2170,1272 T 2200,1722 Q 2160,2122 2190,2480 T 2180,2580"
+            stroke="rgba(255, 255, 255, 0.2)" stroke-width="2.2" stroke-dasharray="14 8" stroke-linecap="round" />
+        </svg>
+
+        <!-- ============================================================
+           ZONE 1: CENTRAL HERO VIEWPORT ZONE (Initial 1440x1024 Focus)
+           ============================================================ -->
+        <section class="canvas-zone zone-center" id="zoneCenter"
+          aria-label="Explore Mohit's Portfolio Central Overview">
+
+          <!-- Central Big Header -->
+          <header class="canvas-hero-header">
+            <h1 class="canvas-hero-title">
+              Explor<span class="canvas-title-accent">e_</span> MyPortfolio
+            </h1>
+            <p class="canvas-hero-subtitle">Design. Sketches. Html&amp;Css</p>
+            <p class="canvas-hero-intro">
+              Hey, I'm Mohit. I design digital experiences, build websites, and turn ideas into working products.
+              Alongside developing my own startup, I'm creating useful digital tools like Musico, a free offline music
+              player. This canvas brings together my designs, experiments, and projects as I continue exploring what's
+              possible.
+            </p>
+          </header>
+
+          <!-- Central Showcase Arrangement -->
+          <div class="center-arrangement">
+
+            <!-- Mayra Creative Website Hero Banner -->
+            <article class="canvas-card card-mayra" tabindex="0" role="button"
+              aria-label="Mayra Creative Website Design Banner">
+              <img src="Assets/UI Elements/thumbs/myra.jpg" data-full-src="Assets/UI Elements/Code Items/myra.jpg"
+                alt="Mayra Website Hero Section Design" class="canvas-img" loading="eager" decoding="async">
+            </article>
+
+            <!-- Signature Mohit below Mayra -->
+            <div class="canvas-mohit-signature">`Mohit</div>
+
+            <!-- Central Call-To-Action Buttons -->
+            <div class="canvas-center-actions">
+              <a href="projects.html" class="canvas-action-btn btn-explore-work"
+                aria-label="Explore My Work - Projects Page">
+                EXPLORE MY WORK
+              </a>
+              <a href="about.html" class="canvas-action-btn btn-about-me" aria-label="About Me Page">
+                ABOUT ME
+              </a>
+            </div>
+
+            <!-- Reserved Area for White Circle Drawing Structure (to be provided later) -->
+            <div class="canvas-circle-structure-space" aria-hidden="true"></div>
+
+            <!-- Under Buttons: Social Dropdown Widget -->
+            <article class="canvas-card card-social-dropdown" tabindex="0" role="button"
+              aria-label="Social Media Menu Interface Card">
+              <img src="Assets/UI Elements/thumbs/jt5.jpg" data-full-src="Assets/UI Elements/Code Items/jt5.jpg"
+                alt="Social Media Dropdown Interface" class="canvas-img" loading="eager" decoding="async">
+            </article>
+
+            <!-- Vertical Design Sheet: TheBookStore -->
+            <article class="canvas-card card-sheet-white" tabindex="0" role="button"
+              aria-label="Practicing Figma Components and Animations . Design">
+              <img src="Assets/UI Elements/thumbs/Frame 73.jpg" data-full-src="Assets/Extras/Frame 73.webp"
+                alt="Practicing Figma Components and Animations . Design" class="canvas-img" loading="eager"
+                decoding="async">
+            </article>
+
+            <!-- Under Frame 73: Let's Connect Card -->
+            <article class="canvas-card card-connect" tabindex="0" role="button"
+              aria-label="Let's Connect Contact Form Design">
+              <img src="Assets/UI Elements/thumbs/Contactyh.jpg"
+                data-full-src="Assets/MyPortfolio _Project-4/Contactyh.png" alt="Let's Connect Form Design Preview"
+                class="canvas-img" loading="eager" decoding="async">
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ============================================================
+           ZONE 2: CODING ZONE (Left Side & Bottom Left)
+           ============================================================ -->
+        <section class="canvas-zone zone-coding" id="zoneCoding" aria-label="Front-End Development and Coding Projects">
+
+          <!-- Section Header & Description Paragraphs -->
+          <div class="zone-info-block coding-info">
+            <h2 class="zone-title">Coding</h2>
+            <p class="zone-text">
+              A collection of websites and interactive projects I built using HTML, CSS, and JavaScript while learning
+              front-end development.
+            </p>
+            <p class="zone-text zone-text-sub">
+              These projects helped me understand web layouts, functionality, and responsive design.
+            </p>
+          </div>
+
+          <!-- Photo Strip with 3 Models (Top Left) -->
+          <article class="canvas-card card-photo-strip" tabindex="0" role="button"
+            aria-label="Design Elements / Practice Projects . Design">
+            <img src="Assets/UI Elements/thumbs/Frame 14.jpg" data-full-src="Assets/Extras/Frame 14.webp"
+              alt="Design Elements / Practice Projects . Design" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Far Left Desktop Card 1 (Dark Dashboard) -->
+          <article class="canvas-card card-desktop-dark" tabindex="0" role="button"
+            aria-label="Developer's Portfolio . HTML and CSS">
+            <img src="Assets/UI Elements/thumbs/fourth.jpg" data-full-src="Assets/UI Elements/Code Items/fourth.jpg"
+              alt="Developer's Portfolio . HTML and CSS" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Tilted Dark WebApp Dropdown Interface Mockup -->
+          <article class="canvas-card card-mockup-dark" tabindex="0" role="button"
+            aria-label="JavaScript Pop-up Project . HTML, CSS and JavaScript">
+            <img src="Assets/UI Elements/thumbs/jt11.jpg" data-full-src="Assets/UI Elements/Code Items/jt11.jpg"
+              alt="JavaScript Pop-up Project . HTML, CSS and JavaScript" class="canvas-img" loading="lazy"
+              decoding="async">
+          </article>
+
+          <!-- Tilted Tall White Website Mockup -->
+          <article class="canvas-card card-mockup-white" tabindex="0" role="button"
+            aria-label="Photo Gallery Effects . HTML, CSS and JavaScript">
+            <img src="Assets/UI Elements/thumbs/jt4.jpg" data-full-src="Assets/UI Elements/Code Items/jt4.jpg"
+              alt="Photo Gallery Effects . HTML, CSS and JavaScript" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Far Left Desktop Card 2 (Creative WebApp) -->
+          <article class="canvas-card card-desktop-light" tabindex="0" role="button"
+            aria-label="Clean and Minimal Portfolio Concept . HTML, CSS and JavaScript">
+            <img src="Assets/UI Elements/thumbs/fifth.jpg" data-full-src="Assets/UI Elements/Code Items/fifth.jpg"
+              alt="Clean and Minimal Portfolio Concept . HTML, CSS and JavaScript" class="canvas-img" loading="lazy"
+              decoding="async">
+          </article>
+
+          <!-- Bottom Left Wide White Card (Web Interface Exploration) -->
+          <article class="canvas-card card-desktop-wide" tabindex="0" role="button"
+            aria-label="Clean and Minimal Developer Portfolio Practice Project . HTML and CSS">
+            <img src="Assets/UI Elements/thumbs/econd.jpg" data-full-src="Assets/UI Elements/Code Items/econd.jpg"
+              alt="Clean and Minimal Developer Portfolio Practice Project . HTML and CSS" class="canvas-img"
+              loading="lazy" decoding="async">
+          </article>
+
+          <!-- Web Design Pill Badge -->
+          <div class="zone-pill-tag tag-webdesign">Web Design</div>
+
+          <!-- NEW: Calculator Card (Bottom Left Corner) - Full size -->
+          <article class="canvas-card card-calculator" tabindex="0" role="button"
+            aria-label="Working Calculator Made with JavaScript . HTML, CSS and JavaScript">
+            <img src="Assets/UI Elements/Code Items/Calculator.png"
+              data-full-src="Assets/UI Elements/Code Items/Calculator.png"
+              alt="Working Calculator Made with JavaScript . HTML, CSS and JavaScript" class="canvas-img" loading="lazy"
+              decoding="async">
+          </article>
+
+          <!-- NEW: Text to Speech Card (Bottom Left Corner) - Full size -->
+          <article class="canvas-card card-tts" tabindex="0" role="button"
+            aria-label="Working Text-to-Speech Converter Made with JavaScript . HTML, CSS and JavaScript">
+            <img src="Assets/UI Elements/thumbs/Text-to-Speech.jpg"
+              data-full-src="Assets/UI Elements/Code Items/Text-to-Speech.png"
+              alt="Working Text-to-Speech Converter Made with JavaScript . HTML, CSS and JavaScript" class="canvas-img"
+              loading="lazy" decoding="async">
+          </article>
+
+        </section>
+
+        <!-- ============================================================
+           ZONE 3: SKETCHES ZONE (Top & Top-Right Side)
+           ============================================================ -->
+        <section class="canvas-zone zone-sketches" id="zoneSketches"
+          aria-label="Hand-Drawn Sketches and Visual Explorations">
+
+          <!-- Section Header with Code Badge & Paragraphs -->
+          <div class="zone-info-block sketches-info">
+            <div class="sketches-title-row">
+              <h2 class="zone-title">Sketches</h2>
+              <span class="sketches-code-badge">&lt;/&gt;</span>
+            </div>
+            <p class="zone-text sketches-text-right">
+              A collection of my hand-drawn sketches and early ideas, exploring different layouts, characters, and
+              visual concepts.
+            </p>
+          </div>
+
+          <p class="zone-inline-text sketches-text-top">
+            These sketches represent the starting point of my creative process.
+          </p>
+
+          <!-- Open Sketchbook on Wooden Desk (Anchor Visual) -->
+          <article class="canvas-card card-sketchbook-desk" tabindex="0" role="button"
+            aria-label="Open Sketchbook with Architecture and Figure Ink Drawings">
+            <img src="Assets/UI Elements/thumbs/Sketchbook-btn.jpg"
+              data-full-src="Assets/Sketches/Sketchbook-btn/Sketchbook-btn.jpg"
+              alt="Desk with Open Ink Sketchbook and Pencils" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Sketch 1: Anatomy & Figure Studies -->
+          <article class="canvas-card card-sketch sketch-run" tabindex="0" role="button"
+            aria-label="Practicing Anatomy Sketching Using Pencil">
+            <img src="Assets/UI Elements/thumbs/IMG_20250426_145505~2.jpg"
+              data-full-src="Assets/UI Elements/Sketches/IMG_20250426_145505~2.jpg"
+              alt="Practicing Anatomy Sketching Using Pencil" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Sketch 2: Characters in Jackets -->
+          <article class="canvas-card card-sketch sketch-ball" tabindex="0" role="button"
+            aria-label="Standing Character in Jacket Drawing">
+            <img src="Assets/UI Elements/thumbs/IMG_20250426_145613~2.jpg"
+              data-full-src="Assets/UI Elements/Sketches/IMG_20250426_145613~2.jpg"
+              alt="Standing Character in Jacket Drawing" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Sketch 3: Basketball Player Sketch -->
+          <article class="canvas-card card-sketch sketch-jacket" tabindex="0" role="button"
+            aria-label="Basketball Player Pencil Sketch">
+            <img src="Assets/UI Elements/thumbs/IMG_20250426_145806~2.jpg"
+              data-full-src="Assets/UI Elements/Sketches/IMG_20250426_145806~2.jpg"
+              alt="Basketball Player Pencil Sketch" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Sketch 4: Dynamic Athletic Pose -->
+          <article class="canvas-card card-sketch sketch-pose" tabindex="0" role="button"
+            aria-label="Dynamic Movement Figure Sketch">
+            <img src="Assets/UI Elements/thumbs/IMG_20250426_150040~2.jpg"
+              data-full-src="Assets/UI Elements/Sketches/IMG_20250426_150040~2.jpg"
+              alt="Figure Studies and Dynamic Body Lines" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Sketch 5: Hand Holding Notebook Under Greenery -->
+          <article class="canvas-card card-sketch sketch-hand" tabindex="0" role="button"
+            aria-label="Hand Holding Pocket Sketchbook">
+            <img src="Assets/UI Elements/thumbs/Snapchat-1246338742.jpg"
+              data-full-src="Assets/UI Elements/Sketches/Snapchat-1246338742.jpg"
+              alt="Hand Holding Pocket Notebook with Drawing" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Sketch 6: Girl Sitting on Chair Under the Moonlight -->
+          <article class="canvas-card card-sketch sketch-singer" tabindex="0" role="button"
+            aria-label="Girl Sitting on Chair Under the Moonlight . Pencil Sketch">
+            <img src="Assets/UI Elements/thumbs/IMG_20250901_104033.jpg"
+              data-full-src="Assets/UI Elements/Sketches/IMG_20250901_104033.jpg"
+              alt="Girl Sitting on Chair Under the Moonlight . Pencil Sketch" class="canvas-img" loading="lazy"
+              decoding="async">
+          </article>
+
+          <!-- Sketch 7: Multiple Figure Studies Sheet -->
+          <article class="canvas-card card-sketch sketch-studies" tabindex="0" role="button"
+            aria-label="Anatomical and Clothes Figure Studies">
+            <img src="Assets/UI Elements/thumbs/IMG_20250427_165906.jpg"
+              data-full-src="Assets/UI Elements/Sketches/IMG_20250427_165906.jpg"
+              alt="Human Anatomy and Character Studies" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- NEW SKETCHES from Assets/UI Elements/Sketches/NewSketches/ (Full size, rounded corners) -->
+          <!-- New Sketch 1: Fictional Sketch and Movements -->
+          <article class="canvas-card card-sketch sketch-new-stand" tabindex="0" role="button"
+            aria-label="Fictional Sketch and Movements">
+            <img src="Assets/UI Elements/thumbs/IMG_20250525_180457~2.jpg"
+              data-full-src="Assets/UI Elements/Sketches/NewSketches/IMG_20250525_180457~2.jpg"
+              alt="Fictional Sketch and Movements" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- New Sketch 2: Digital Sketching in My Own Website -->
+          <article class="canvas-card card-sketch sketch-new-character" tabindex="0" role="button"
+            data-modal-rotate="270" aria-label="Digital Sketching in My Own Website">
+            <img src="Assets/UI Elements/thumbs/Snapchat-609397645.jpg"
+              data-full-src="Assets/UI Elements/Sketches/NewSketches/Snapchat-609397645.jpg"
+              alt="Digital Sketching in My Own Website" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- New Sketch 3: Wednesday, Alice in Borderland, Stranger Things -->
+          <article class="canvas-card card-sketch sketch-new-pose" tabindex="0" role="button"
+            aria-label="Wednesday . Alice in Borderland . Stranger Things">
+            <img src="Assets/UI Elements/thumbs/IMG_20250709_174924~2.jpg"
+              data-full-src="Assets/UI Elements/Sketches/NewSketches/IMG_20250709_174924~2.jpg"
+              alt="Wednesday . Alice in Borderland . Stranger Things" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- New Sketch 4: Journaling -->
+          <article class="canvas-card card-sketch sketch-new-floral" tabindex="0" role="button" aria-label="Journaling">
+            <img src="Assets/UI Elements/thumbs/IMG_20250815_175343~2.jpg"
+              data-full-src="Assets/UI Elements/Sketches/NewSketches/IMG_20250815_175343~2.jpg" alt="Journaling"
+              class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- New Sketch 5: Vintage House Sketching -->
+          <article class="canvas-card card-sketch sketch-new-spiral" tabindex="0" role="button"
+            aria-label="Vintage House Sketching">
+            <img src="Assets/UI Elements/thumbs/InShot_20250815_090107868.jpg"
+              data-full-src="Assets/UI Elements/Sketches/NewSketches/InShot_20250815_090107868.jpg"
+              alt="Vintage House Sketching" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Sketch 8: Singing -->
+          <article class="canvas-card card-sketch sketch-paris" tabindex="0" role="button" aria-label="Singing">
+            <img src="Assets/UI Elements/thumbs/IMG_20251027_114609.jpg"
+              data-full-src="Assets/UI Elements/Sketches/IMG_20251027_114609.jpg" alt="Singing" class="canvas-img"
+              loading="lazy" decoding="async">
+          </article>
+
+          <!-- New Sketch 6: Holding My Small Sketchbook in Nature -->
+          <article class="canvas-card card-sketch sketch-new-outdoors" tabindex="0" role="button"
+            aria-label="Holding My Small Sketchbook in Nature">
+            <img src="Assets/UI Elements/thumbs/IMG_20251016_180654.jpg"
+              data-full-src="Assets/UI Elements/Sketches/NewSketches/IMG_20251016_180654.jpg"
+              alt="Holding My Small Sketchbook in Nature" class="canvas-img" loading="lazy"
+              decoding="async">
+          </article>
+
+          <!-- New Sketch 7: Beautiful Flower Sketch -->
+          <article class="canvas-card card-sketch sketch-new-face" tabindex="0" role="button"
+            aria-label="Beautiful Flower Sketch">
+            <img src="Assets/UI Elements/thumbs/IMG_20260614_190101.jpg"
+              data-full-src="Assets/UI Elements/Sketches/NewSketches/IMG_20260614_190101.jpg"
+              alt="Beautiful Flower Sketch" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Sketch 9: Fantasy Dream Sketching -->
+          <article class="canvas-card card-sketch sketch-headphones" tabindex="0" role="button"
+            aria-label="Fantasy Dream Sketching . Drawn with Imagination">
+            <img src="Assets/UI Elements/thumbs/Snapchat-295529637.jpg"
+              data-full-src="Assets/UI Elements/Sketches/Snapchat-295529637.jpg"
+              alt="Fantasy Dream Sketching . Drawn with Imagination" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+        </section>
+
+        <!-- ============================================================
+           ZONE 4: UI DESIGN ELEMENTS ZONE (Middle-Right & Bottom-Right)
+           ============================================================ -->
+        <section class="canvas-zone zone-ui-elements" id="zoneUiElements"
+          aria-label="UI Components, Design Explorations, and Interface Kits">
+
+          <!-- Section Header & Descriptions -->
+          <div class="zone-info-block ui-info">
+            <div class="ui-title-row">
+              <h2 class="zone-title">UI Design Elements</h2>
+              <span class="zone-pill-tag tag-creative-exp">Creative Experiments</span>
+            </div>
+            <p class="zone-text ui-text-right">
+              This space showcases my design explorations, visual ideas, and evolving approach to UI/UX design.
+            </p>
+            <p class="zone-text ui-text-sub">
+              A collection of my UI designs, website concepts, dashboards, portfolios, and interface experiments.
+            </p>
+          </div>
+
+          <!-- Ambient In-Between Text 1: Creating useful tools -->
+          <p class="zone-inline-text text-useful-tools">
+            Creating useful tools for everyone's life.
+          </p>
+
+          <!-- Ambient In-Between Text 2: Working on something creative -->
+          <p class="zone-inline-text text-working-creative">
+            Working on something<br>creative
+          </p>
+
+          <!-- TheBookStore Dark Wireframe Card (Full size) -->
+          <article class="canvas-card card-bookstore" tabindex="0" role="button"
+            aria-label="Practicing Figma Components and Animations . Design">
+            <img src="Assets/UI Elements/thumbs/Frame 63.jpg" data-full-src="Assets/Extras/Frame 63.webp"
+              alt="Practicing Figma Components and Animations . Design" class="canvas-img" loading="lazy"
+              decoding="async">
+          </article>
+
+          <!-- Dark UI Elements Collection Card (Buttons, Audio, Tokens - Full size) -->
+          <article class="canvas-card card-ui-dark-kit" tabindex="0" role="button"
+            aria-label="Creative Real Life Folder Illustration Made in Figma">
+            <img src="Assets/UI Elements/thumbs/Extras-2.jpg"
+              data-full-src="Assets/UI Elements/Design Items/Extras-2.png"
+              alt="Creative Real Life Folder Illustration Made in Figma" class="canvas-img" loading="lazy"
+              decoding="async">
+          </article>
+
+          <!-- Grocery Total Card (Full size) -->
+          <article class="canvas-card card-grocery" tabindex="0" role="button"
+            aria-label="Grocery Total Map Interface Card">
+            <img src="Assets/UI Elements/Design Items/GroceryCard.png"
+              data-full-src="Assets/UI Elements/Design Items/GroceryCard.png"
+              alt="Grocery Delivery Total $120 Map Widget" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- CROPPED DESIGN ITEM 1: Artist Portfolio Digital Art Canvas Painting -->
+          <article class="canvas-card card-art-painting" tabindex="0" role="button"
+            aria-label="Creative Artist Portfolio with Personalized Elements . Design Figma Project">
+            <img src="Assets/UI Elements/thumbs/Artist Portfolio _Home.jpg"
+              data-full-src="Assets/UI Elements/Design items_Main/Artist Portfolio _Home.webp"
+              alt="Creative Artist Portfolio with Personalized Elements . Design Figma Project"
+              class="canvas-img img-cropped-artist" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Hello Camera Card (Full size) -->
+          <article class="canvas-card card-hello-cam" tabindex="0" role="button"
+            aria-label="Hello Creative Portfolio Loading Page . Figma Design">
+            <img src="Assets/UI Elements/thumbs/Artist Portfolio _Loading...jpg"
+              data-full-src="Assets/UI Elements/Design items_Main/Artist Portfolio _Loading...webp"
+              alt="Hello Creative Portfolio Loading Page . Figma Design" class="canvas-img" loading="lazy"
+              decoding="async">
+          </article>
+
+          <!-- CROPPED DESIGN ITEM 2: 7 Brew Cafe Coffee Card -->
+          <article class="canvas-card card-coffee-7brew" tabindex="0" role="button"
+            aria-label="7 Brew Cafe - Fresh Coffee Made Better Card">
+            <img src="Assets/UI Elements/thumbs/7 Brew Cafe.jpg"
+              data-full-src="Assets/UI Elements/Design items_Main/7 Brew Cafe.webp"
+              alt="7 Brew Cafe Brand Story and Coffee Menu Card" class="canvas-img img-cropped-7brew" loading="lazy"
+              decoding="async">
+          </article>
+
+          <!-- Musico Dual Mobile Screen App Showcase (Full Image - Far Right) -->
+          <article class="canvas-card card-atsuko-tall card-musico-full" tabindex="0" role="button"
+            aria-label="Musico Offline Music App UI Design - Dual Mobile Screens">
+            <img src="Assets/UI Elements/thumbs/Atsuko _Mobile.jpg"
+              data-full-src="Assets/UI Elements/Design items_Main/Atsuko _Mobile.webp"
+              alt="Musico Music Player Dual Mobile Experience Mockup" class="canvas-img" loading="lazy"
+              decoding="async">
+          </article>
+
+          <!-- Minimal Clean LogIn Page Modal (Full size) -->
+          <article class="canvas-card card-login-modal" tabindex="0" role="button"
+            aria-label="Cafe Login Page with Personalized Logo . Figma">
+            <img src="Assets/UI Elements/thumbs/LogIn Page.jpg"
+              data-full-src="Assets/UI Elements/Design items_Main/LogIn Page.webp"
+              alt="Cafe Login Page with Personalized Logo . Figma" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Retro Player & UI Elements Card (Lv. 13 Every Pixel Has A Purpose - Full size) -->
+          <article class="canvas-card card-retro-player" tabindex="0" role="button"
+            aria-label="Lv. 13 Every Pixel Has A Purpose Retro Design Board">
+            <img src="Assets/UI Elements/thumbs/Desktop - 145.jpg"
+              data-full-src="Assets/UI Elements/Design Items/Desktop - 145.webp"
+              alt="Retro Music Player and Portfolio Wireframe Card" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- CROPPED DESIGN ITEM 4: Writer's Portfolio Book Mockup Card -->
+          <article class="canvas-card card-writers-book" tabindex="0" role="button"
+            aria-label="Writer's Portfolio Book Spread Presentation">
+            <img src="Assets/UI Elements/thumbs/Writer's Portfolio _Book.jpg"
+              data-full-src="Assets/UI Elements/Design items_Main/Writer's Portfolio _Book.webp"
+              alt="Writer's Portfolio Open Novel Spread Card" class="canvas-img img-cropped-writer" loading="lazy"
+              decoding="async">
+          </article>
+
+          <!-- Coffee Lounge Interior Card (Full size) -->
+          <article class="canvas-card card-coffee-interior" tabindex="0" role="button"
+            aria-label="User Flow &amp; Wireframe Architecture">
+            <img src="Assets/UI Elements/thumbs/IMG_20261011_085050.jpg"
+              data-full-src="Assets/7 Brew Cafe_ Project-1/IMG_20261011_085050.jpg"
+              alt="User Flow &amp; Wireframe Architecture" class="canvas-img" loading="lazy" decoding="async">
+          </article>
+
+          <!-- Mobile UI App Showcase: Amilia Moralise Long Mobile View (Top Half Showcase) -->
+          <article class="canvas-card card-mobile-showcase" tabindex="0" role="button"
+            aria-label="Amilia Moralise Mobile Website Portfolio Showcase">
+            <img src="Assets/UI Elements/thumbs/Amilia Moralise _ Mobile.jpg"
+              data-full-src="Assets/UI Elements/Design items_Main/Amilia Moralise _ Mobile.webp"
+              alt="Amilia Moralise Mobile Website Long Responsive Layout" class="canvas-img img-cropped-mobile"
+              loading="lazy" decoding="async">
+          </article>
+
+          <!-- Photo Gallery WebApp Card (Bottom Far Right - Full size) -->
+          <article class="canvas-card card-gallery-webapp" tabindex="0" role="button"
+            aria-label="Interactive Photo Gallery Web Application Grid">
+            <img src="Assets/UI Elements/thumbs/Gallery Webapp.jpg"
+              data-full-src="Assets/UI Elements/Design items_Main/Gallery Webapp.webp"
+              alt="Modern Photo Gallery Grid and Creative Portfolio WebApp" class="canvas-img" loading="lazy"
+              decoding="async">
+          </article>
+
+        </section>
+
+        <!-- ============================================================
+           ZONE 5: INTERACTIVE HUB (Inquiries, Services, Tools & Accounts)
+           ============================================================ -->
+        <section class="canvas-zone zone-interactive-hub" id="zoneInteractiveHub"
+          aria-label="Services, Client Queries, Tools and Professional Profiles">
+
+          <!-- 1. Client Inquiry CTA Buttons (Tilted cluster) -->
+          <div class="hub-block hub-queries-block">
+            <div class="hub-section-label">
+              <span class="hub-label-accent">//</span> CLIENT INQUIRIES &amp; FAST QUERIES
+            </div>
+            <div class="hub-query-cluster">
+              <a href="contact.html?query=google-meet" class="hub-query-btn btn-query-meet"
+                aria-label="Book a Google Meet with Mohit">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <span>Book a Google Meet</span>
+              </a>
+              <a href="contact.html?query=brand-creation" class="hub-query-btn btn-query-brand"
+                aria-label="Want to create a brand inquiry">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                  </polygon>
+                </svg>
+                <span>Want to create a brand</span>
+              </a>
+              <a href="contact.html?query=quick-site" class="hub-query-btn btn-query-quicksite"
+                aria-label="Want a quick site inquiry">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                <span>Want a quick site</span>
+              </a>
+              <a href="contact.html?query=specified-template" class="hub-query-btn btn-query-template"
+                aria-label="Want a specified template of a website">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                  <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+                <span>Want a specified template of a website</span>
+              </a>
+              <a href="contact.html?query=mobile-ui-design" class="hub-query-btn btn-query-mobileui"
+                aria-label="Mobile UI design inquiry">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                <span>Mobile UI design</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 2. What Do I Do (Services & Skills Badges) -->
+          <div class="hub-block hub-services-block">
+            <div class="hub-section-label">
+              <span class="hub-label-accent">//</span> WHAT DO I DO
+            </div>
+            <div class="hub-services-grid">
+              <div class="hub-service-chip" tabindex="0">
+                <span class="service-accent-bar"></span>
+                <span class="service-title">UI/UX Design</span>
+              </div>
+              <div class="hub-service-chip" tabindex="0">
+                <span class="service-accent-bar"></span>
+                <span class="service-title">Responsive Web Design</span>
+              </div>
+              <div class="hub-service-chip" tabindex="0">
+                <span class="service-accent-bar"></span>
+                <span class="service-title">Figma Interface Design</span>
+              </div>
+              <div class="hub-service-chip" tabindex="0">
+                <span class="service-accent-bar"></span>
+                <span class="service-title">Wix Studio Website Building</span>
+              </div>
+              <div class="hub-service-chip" tabindex="0">
+                <span class="service-accent-bar"></span>
+                <span class="service-title">AI-Assisted Website Development</span>
+              </div>
+              <div class="hub-service-chip" tabindex="0">
+                <span class="service-accent-bar"></span>
+                <span class="service-title">UX Research &amp; Visual Research</span>
+              </div>
+              <div class="hub-service-chip" tabindex="0">
+                <span class="service-accent-bar"></span>
+                <span class="service-title">Personalized Logo Design</span>
+              </div>
+              <div class="hub-service-chip" tabindex="0">
+                <span class="service-accent-bar"></span>
+                <span class="service-title">Canva Design</span>
+              </div>
+              <div class="hub-service-chip" tabindex="0">
+                <span class="service-accent-bar"></span>
+                <span class="service-title">Brand Designing</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Tools That I Use -->
+          <div class="hub-block hub-tools-block">
+            <div class="hub-section-label">
+              <span class="hub-label-accent">//</span> TOOLS THAT I USE
+            </div>
+            <div class="hub-tools-list">
+              <div class="hub-tool-pill" tabindex="0" title="Figma - Interface &amp; Prototyping">
+                <span class="tool-dot tool-dot-figma"></span>
+                <span>Figma</span>
+              </div>
+              <div class="hub-tool-pill" tabindex="0" title="Wix Studio - Web Creation">
+                <span class="tool-dot tool-dot-wix"></span>
+                <span>Wix Studio</span>
+              </div>
+              <div class="hub-tool-pill" tabindex="0" title="Canva - Creative Graphics">
+                <span class="tool-dot tool-dot-canva"></span>
+                <span>Canva</span>
+              </div>
+              <div class="hub-tool-pill" tabindex="0" title="Antigravity IDE - Agentic Development">
+                <span class="tool-dot tool-dot-agy"></span>
+                <span>Antigravity IDE</span>
+              </div>
+              <div class="hub-tool-pill" tabindex="0" title="Obsidian - Knowledge Base">
+                <span class="tool-dot tool-dot-obsidian"></span>
+                <span>Obsidian</span>
+              </div>
+              <div class="hub-tool-pill" tabindex="0" title="Pinterest - Visual Inspiration">
+                <span class="tool-dot tool-dot-pinterest"></span>
+                <span>Pinterest for Inspiration</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Professional Accounts (Working Buttons) -->
+          <div class="hub-block hub-accounts-block">
+            <div class="hub-section-label">
+              <span class="hub-label-accent">//</span> PROFESSIONAL ACCOUNTS
+            </div>
+            <div class="hub-accounts-grid">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                class="hub-account-card account-linkedin" aria-label="Mohit on LinkedIn">
+                <div class="account-icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                  </svg>
+                </div>
+                <div class="account-info">
+                  <span class="account-name">LinkedIn</span>
+                  <span class="account-sub">Connect Professionally</span>
+                </div>
+                <svg class="account-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                class="hub-account-card account-github" aria-label="Mohit on GitHub">
+                <div class="account-icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                  </svg>
+                </div>
+                <div class="account-info">
+                  <span class="account-name">GitHub</span>
+                  <span class="account-sub">Repositories &amp; Code</span>
+                </div>
+                <svg class="account-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+
+              <a href="https://behance.net" target="_blank" rel="noopener noreferrer"
+                class="hub-account-card account-behance" aria-label="Mohit on Behance">
+                <div class="account-icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M22 7h-7V5h7v2zm-2.4 5.3c-.2-1.3-1.1-2.3-2.6-2.3-1.8 0-2.8 1.3-2.9 3h5.5zm-5.5 1.7c0 1.9 1.2 3.1 3 3.1 1.2 0 2.2-.6 2.6-1.6h2.1c-.6 2-2.5 3.4-4.8 3.4-3.2 0-5.3-2.2-5.3-5.2s2.1-5.3 5.3-5.3c3.2 0 5 2.3 4.8 5.6h-7.7zm-4.8-1.5c.7-.4 1.2-1.1 1.2-2.1 0-1.8-1.4-2.9-3.4-2.9H2v12.8h5.3c2.2 0 3.8-1.3 3.8-3.3 0-1.3-.7-2.1-1.8-2.5zm-4.7-3.2h2.7c1 0 1.6.5 1.6 1.3 0 .8-.6 1.3-1.6 1.3H4.6V9.3zm2.9 6.9H4.6v-2.8h2.9c1.1 0 1.8.6 1.8 1.4 0 .9-.7 1.4-1.8 1.4z" />
+                  </svg>
+                </div>
+                <div class="account-info">
+                  <span class="account-name">Behance</span>
+                  <span class="account-sub">Design Portfolio</span>
+                </div>
+                <svg class="account-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+
+              <a href="https://fiverr.com" target="_blank" rel="noopener noreferrer"
+                class="hub-account-card account-fiverr" aria-label="Hire Mohit on Fiverr">
+                <div class="account-icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M23 7.5h-3.8v-1c0-.6.3-.9 1-.9h2.8V2H19c-3 0-4.8 1.6-4.8 4.5v1H11v3.6h3.2V22h4.8v-11h3.4L23 7.5zM7.8 22H3V9.5h4.8V22zM5.4 7a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                  </svg>
+                </div>
+                <div class="account-info">
+                  <span class="account-name">Fiverr</span>
+                  <span class="account-sub">Order &amp; Hire Directly</span>
+                </div>
+                <svg class="account-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Floating Canvas Navigation Controls (Figma/Miro Style) -->
+  <aside class="canvas-controls-panel" aria-label="Canvas Zoom and Pan Controls">
+    <button type="button" class="ctrl-btn" id="btnZoomOut" aria-label="Zoom out canvas" title="Zoom Out (-)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+    </button>
+    <button type="button" class="ctrl-btn ctrl-zoom-label" id="btnZoomReset" aria-label="Reset zoom to 100%"
+      title="Reset Zoom (0)">
+      <span id="zoomPercentText">100%</span>
+    </button>
+    <button type="button" class="ctrl-btn" id="btnZoomIn" aria-label="Zoom in canvas" title="Zoom In (+)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+    </button>
+    <button type="button" class="ctrl-btn ctrl-center-btn" id="btnCenterCanvas" aria-label="Re-center canvas viewport"
+      title="Re-center Viewport">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="22" y1="12" x2="18" y2="12"></line>
+        <line x1="6" y1="12" x2="2" y2="12"></line>
+        <line x1="12" y1="6" x2="12" y2="2"></line>
+        <line x1="12" y1="22" x2="12" y2="18"></line>
+      </svg>
+      <span>Center View</span>
+    </button>
+    <!-- Dynamic Canvas Section Indicator Box (Home / Front-End Projects / Sketchbook / Design Projects / Hire Me) -->
+    <div class="ctrl-zone-box" id="ctrlZoneBox" data-zone="home" role="status" aria-live="polite"
+      aria-label="Current Canvas Section" title="Current Canvas Section">
+      <span class="zone-box-dot" id="zoneBoxDot" aria-hidden="true"></span>
+      <span class="zone-box-label" id="zoneBoxLabel">Home</span>
+    </div>
+  </aside>
+
+  <!-- Floating Minimap Radar (Bottom-Right Corner) -->
+  <aside class="canvas-minimap-wrap" id="canvasMinimap" aria-label="Canvas Navigator Minimap"
+    title="Click or drag to navigate canvas">
+    <div class="minimap-board-preview" id="minimapBoard">
+      <!-- Mini representations of zones -->
+      <div class="mini-zone mini-zone-coding" data-zone="coding" data-label="Front-End Projects"
+        title="Front-End Projects"></div>
+      <div class="mini-zone mini-zone-sketches" data-zone="sketches" data-label="Sketchbook" title="Sketchbook"></div>
+      <div class="mini-zone mini-zone-center" data-zone="home" data-label="Home" title="Home"></div>
+      <div class="mini-zone mini-zone-ui" data-zone="ui" data-label="Design Projects" title="Design Projects"></div>
+      <div class="mini-zone mini-zone-hub" data-zone="hire" data-label="Hire Me" title="Hire Me"></div>
+      <!-- Viewport Radar Box -->
+      <div class="minimap-viewport-box" id="minimapRadar"></div>
+    </div>
+  </aside>
+
+  <!-- Lightbox Modal for High-Res Image Preview -->
+  <dialog class="canvas-lightbox-modal" id="canvasLightbox" aria-label="Enlarged Artwork Preview">
+    <div class="lightbox-content-wrap">
+      <button type="button" class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close preview">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <img src="" alt="" class="lightbox-full-img" id="lightboxImg">
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+  </dialog>
+
+  <!-- Interactive JavaScript Engine -->
+  <script src="ui-canvas.js"></script>
+</body>
+
+</html>

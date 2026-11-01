@@ -1,0 +1,12 @@
+# Robots.txt for Mohit — UI/UX & Web Designer Portfolio
+# Allow legitimate search engines to crawl and index all public pages and assets
+
+User-agent: *
+Allow: /
+Allow: /Assets/
+Allow: /Assests/
+Allow: /style.css
+Allow: /main.js
+
+# Sitemap location
+Sitemap: https://mohitportfolio.com/sitemap.xml

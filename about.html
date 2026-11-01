@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me — Mohit | UI/UX & Web Designer</title>
+  <meta name="description"
+    content="Learn more about Mohit — entry-level UI/UX and Web Designer specializing in clean interface design, Figma prototyping, and responsive websites.">
+  <meta name="author" content="Mohit">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#161616">
+  <link rel="canonical" href="https://mohitportfolio.com/about.html">
+
+  <!-- Open Graph / Social Media Sharing -->
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://mohitportfolio.com/about.html">
+  <meta property="og:site_name" content="Mohit Portfolio">
+  <meta property="og:title" content="About Me — Mohit | UI/UX & Web Designer">
+  <meta property="og:description"
+    content="Learn more about Mohit — UI/UX and Web Designer focused on structured interfaces and digital experiences.">
+  <meta property="og:image" content="https://mohitportfolio.com/Assets/MainLogo.svg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Font Optimization -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Caveat:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="about-page-body">
+
+  <!-- Skip to Main Content Link for Keyboard Accessibility -->
+  <a href="#about-hero" class="skip-link">Skip to main content</a>
+
+  <!-- Top Fixed Navigation Bar (Smart Scroll-Direction Header) -->
+  <nav class="nav-bar" aria-label="Main Navigation">
+    <div class="nav-container">
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo" aria-label="Mohit — Home">
+        <img src="Assets/logo.svg" alt="Mohit — UI/UX & Web Designer" class="logo-img" width="52" height="38">
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <div class="desktop-nav-links" id="desktopNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="ui-elements.html" class="nav-link nav-link-canvas" aria-label="Interactive Canvas">Ca<span
+            class="nav-canvas-dim">nva</span>s</a>
+        <a href="about.html" class="nav-link active" aria-current="page">AboutMe</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-hamburger" id="hamburgerBtn" aria-label="Toggle Navigation Menu" aria-expanded="false"
+        aria-controls="desktopNav">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Landmark -->
+  <main id="main-content">
+
+    <!-- ================= ABOUT HERO SECTION (100VW x 100VH) ================= -->
+    <section class="about-hero-section" id="about-hero" aria-label="About Mohit">
+
+      <!-- Ambient Floating Dashed Tags -->
+      <div class="floating-tag-chip about-tag-designer float-anim-1" aria-hidden="true">
+        <span>Designer</span>
+      </div>
+
+      <div class="floating-tag-chip about-tag-learner float-anim-2" aria-hidden="true">
+        <span>Learner</span>
+      </div>
+
+      <!-- Main Headline Block (Lower Left) -->
+      <div class="about-hero-typography">
+        <h1 class="about-hero-headline">
+          <span class="about-hi-text">Hi!</span>
+          <span class="about-im-mohit">
+            <span class="script-im-wrap">
+              <span class="script-im">I’m</span>
+              <span class="im-underline-bar" aria-hidden="true"></span>
+            </span>
+            <span class="name-mohit">Mohit</span>
+          </span>
+        </h1>
+        <p class="about-hero-subtext">
+          <a href="projects.html" class="about-subtext-link" aria-label="Explore Projects">Projects.</a>
+          <a href="contact.html" class="about-subtext-link" aria-label="Get in Touch / Connect">Connect.</a>
+        </p>
+      </div>
+
+      <!-- Portrait Area -->
+      <div class="about-portrait-wrapper">
+        <img src="Assets/about me image.png" alt="Mohit — UI/UX & Web Designer" class="about-portrait-img"
+          loading="eager" decoding="async">
+      </div>
+
+      <!-- Right-Side 3 Stretched Roles Cards Stack -->
+      <aside class="about-roles-stack" id="aboutRolesStack" aria-label="About Roles & Strengths">
+
+        <!-- Card 1: DESIGNER -->
+        <div class="about-role-card" data-role="designer" tabindex="0" role="region" aria-label="Designer Role Card">
+          <div class="about-role-card-body">
+            <div class="about-role-tab">
+              <span class="role-letter">D</span>
+              <span class="role-letter">E</span>
+              <span class="role-letter">S</span>
+              <span class="role-letter">I</span>
+              <span class="role-letter">G</span>
+              <span class="role-letter">N</span>
+              <span class="role-letter">E</span>
+              <span class="role-letter">R</span>
+            </div>
+            <div class="about-role-divider" aria-hidden="true"></div>
+            <div class="about-role-text">
+              I’m an entry-level UI/UX and Web Designer focused on creating clean, useful, and responsive digital
+              experiences. I mainly work in Figma and enjoy turning ideas into structured interfaces with thoughtful
+              layouts and visual systems.
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: CREATOR -->
+        <div class="about-role-card" data-role="creator" tabindex="0" role="region" aria-label="Creator Role Card">
+          <div class="about-role-card-body">
+            <div class="about-role-tab">
+              <span class="role-letter">C</span>
+              <span class="role-letter">R</span>
+              <span class="role-letter">E</span>
+              <span class="role-letter">A</span>
+              <span class="role-letter">T</span>
+              <span class="role-letter">O</span>
+              <span class="role-letter">R</span>
+            </div>
+            <div class="about-role-divider" aria-hidden="true"></div>
+            <div class="about-role-text">
+              I enjoy creating complete digital experiences, from UI concepts and personalized logos to responsive
+              websites. I work with Figma, Wix Studio, Canva, HTML/CSS, and AI-powered tools to turn ideas into real
+              designs and websites.
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: LEARNER -->
+        <div class="about-role-card" data-role="learner" tabindex="0" role="region" aria-label="Learner Role Card">
+          <div class="about-role-card-body">
+            <div class="about-role-tab">
+              <span class="role-letter">L</span>
+              <span class="role-letter">E</span>
+              <span class="role-letter">A</span>
+              <span class="role-letter">R</span>
+              <span class="role-letter">N</span>
+              <span class="role-letter">E</span>
+              <span class="role-letter">R</span>
+            </div>
+            <div class="about-role-divider" aria-hidden="true"></div>
+            <div class="about-role-text">
+              I’m continuously developing my UX and product design skills through research, practice, and real projects.
+              I’m currently building my foundation in UX design while exploring new tools, design patterns, and
+              AI-assisted workflows.
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+    </section>
+
+    <!-- ================= ABOUT DETAILS SECTION (#E2E2E2 LIGHT PANEL) ================= -->
+    <section class="about-details-section" id="about-details" aria-label="What I Do, Journey and Stats">
+      <div class="about-details-container">
+
+        <!-- Interactive 3-Tab Navigation Bar: What do i do? | Journey | Stats -->
+        <div class="about-tabs-nav" role="tablist" aria-label="About Information Tabs">
+          <button type="button" class="about-tab-btn is-active" id="tab-what" data-tab="what" role="tab"
+            aria-selected="true" aria-controls="about-tab-panel" tabindex="0">
+            <span class="tab-label">What do i do?</span>
+            <span class="tab-indicator" aria-hidden="true"></span>
+          </button>
+
+          <button type="button" class="about-tab-btn" id="tab-journey" data-tab="journey" role="tab"
+            aria-selected="false" aria-controls="about-tab-panel" tabindex="0">
+            <span class="tab-label">Journey</span>
+            <span class="tab-indicator" aria-hidden="true"></span>
+          </button>
+
+          <button type="button" class="about-tab-btn" id="tab-stats" data-tab="stats" role="tab" aria-selected="false"
+            aria-controls="about-tab-panel" tabindex="0">
+            <span class="tab-label">Stats</span>
+            <span class="tab-indicator" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <!-- Static 3 Black Boxes Grid -->
+        <div class="about-boxes-grid" aria-label="Skills, Tools and Social Presence">
+
+          <!-- Box 1: Skills & Capabilities -->
+          <div class="about-static-box" id="box-skills" aria-label="Skills & Capabilities">
+            <ul class="about-box-list" role="list">
+              <li>UI/UX Design</li>
+              <li>UX Research</li>
+              <li>Responsive Web Design</li>
+              <li>No-Code Development</li>
+              <li>AI-Assisted Workflows</li>
+              <li>Product Design</li>
+              <li>Figma Design</li>
+              <li>Visual Design</li>
+              <li>Design Research</li>
+              <li>Website Building</li>
+              <li>Creative Problem Solving</li>
+            </ul>
+          </div>
+
+          <!-- Box 2: Tools & Workflow -->
+          <div class="about-static-box" id="box-tools" aria-label="Design and Development Tools">
+            <ul class="about-box-list" role="list">
+              <li>Figma</li>
+              <li>Wix Studio</li>
+              <li>Canva</li>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>Antigravity</li>
+              <li>ChatGPT</li>
+              <li>Pinterest</li>
+              <li>Mobbin</li>
+              <li>Dribbble</li>
+              <li>Obsidian</li>
+            </ul>
+          </div>
+
+          <!-- Box 3: Social & Professional Links -->
+          <div class="about-static-box" id="box-social" aria-label="Platforms and Profiles">
+            <ul class="about-box-list" role="list">
+              <li>Instagram</li>
+              <li>LinkedIn</li>
+              <li>GitHub</li>
+              <li>Email</li>
+              <li>Behance</li>
+              <li>Dribbble</li>
+              <li>Figma Community</li>
+              <li>Pinterest</li>
+              <li>X (Twitter)</li>
+              <li>Medium</li>
+              <li>Fiverr</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Dynamic Description Paragraph Area (Changes per Tab) -->
+        <div class="about-dynamic-panel" id="about-tab-panel" role="tabpanel" aria-labelledby="tab-what">
+          <p class="about-dynamic-text" id="aboutDynamicText">
+            I design user-focused interfaces and responsive websites, starting with research and visual exploration
+            before moving into structured UI design. Figma is my main design tool, while Wix Studio, HTML/CSS, and AI
+            tools help me turn designs into working web experiences. I also create personalized logos and visual assets
+            when a project needs them.
+          </p>
+        </div>
+
+        <!-- ================= TAB PANELS: WHAT DO I DO | JOURNEY | STATS ================= -->
+
+        <!-- Tab 1 Panel: What do i do? (Active by default) -->
+        <div class="what-i-do-services-wrapper" id="tab-panel-what" role="tabpanel" aria-labelledby="tab-what">
+          <div class="what-i-do-services-list" id="servicesList-what" role="list"
+            aria-label="What I Do Detailed Capabilities">
+
+            <!-- Item 1: UI/UX Design (Selected by default) -->
+            <div class="what-i-do-item is-selected" data-index="0" role="listitem" tabindex="0"
+              aria-label="UI/UX Design">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">UI/UX Design</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 2: Responsive Web Design -->
+            <div class="what-i-do-item" data-index="1" role="listitem" tabindex="0" aria-label="Responsive Web Design">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Responsive Web Design</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 3: Figma Interface Design -->
+            <div class="what-i-do-item" data-index="2" role="listitem" tabindex="0" aria-label="Figma Interface Design">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Figma Interface Design</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 4: Wix Studio Website Building -->
+            <div class="what-i-do-item" data-index="3" role="listitem" tabindex="0"
+              aria-label="Wix Studio Website Building">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Wix Studio Website Building</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 5: AI-Assisted Website Development -->
+            <div class="what-i-do-item" data-index="4" role="listitem" tabindex="0"
+              aria-label="AI-Assisted Website Development">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">AI-Assisted Website Development</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 6: UX Research & Visual Research -->
+            <div class="what-i-do-item" data-index="5" role="listitem" tabindex="0"
+              aria-label="UX Research & Visual Research">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">UX Research &amp; Visual Research</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 7: Personalized Logo Design -->
+            <div class="what-i-do-item" data-index="6" role="listitem" tabindex="0"
+              aria-label="Personalized Logo Design">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Personalized Logo Design</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 8: Canva Design -->
+            <div class="what-i-do-item" data-index="7" role="listitem" tabindex="0" aria-label="Canva Design">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Canva Design</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tab 2 Panel: Journey -->
+        <div class="what-i-do-services-wrapper is-tab-hidden" id="tab-panel-journey" role="tabpanel"
+          aria-labelledby="tab-journey" hidden>
+          <div class="what-i-do-services-list" id="servicesList-journey" role="list"
+            aria-label="Journey Detailed Timeline">
+
+            <!-- Item 1: Started exploring web design and visual design (Selected by default) -->
+            <div class="what-i-do-item is-selected" data-index="0" role="listitem" tabindex="0"
+              aria-label="Started exploring web design and visual design">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Started exploring web design and visual design</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 2: Learned and practiced Figma for UI design -->
+            <div class="what-i-do-item" data-index="1" role="listitem" tabindex="0"
+              aria-label="Learned and practiced Figma for UI design">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Learned and practiced Figma for UI design</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 3: Built responsive websites using Wix Studio -->
+            <div class="what-i-do-item" data-index="2" role="listitem" tabindex="0"
+              aria-label="Built responsive websites using Wix Studio">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Built responsive websites using Wix Studio</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 4: Developed practical HTML/CSS skill -->
+            <div class="what-i-do-item" data-index="3" role="listitem" tabindex="0"
+              aria-label="Developed practical HTML/CSS skill">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Developed practical HTML/CSS skill</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 5: Started learning UX through the Google UX Design course -->
+            <div class="what-i-do-item" data-index="4" role="listitem" tabindex="0"
+              aria-label="Started learning UX through the Google UX Design course">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Started learning UX through the Google UX Design course</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 6: Began exploring AI-powered design and website development -->
+            <div class="what-i-do-item" data-index="5" role="listitem" tabindex="0"
+              aria-label="Began exploring AI-powered design and website development">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Began exploring AI-powered design and website development</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 7: Building personal projects to strengthen my portfolio -->
+            <div class="what-i-do-item" data-index="6" role="listitem" tabindex="0"
+              aria-label="Building personal projects to strengthen my portfolio">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Building personal projects to strengthen my portfolio</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 8: Working toward UI/UX and eventually Product Design -->
+            <div class="what-i-do-item" data-index="7" role="listitem" tabindex="0"
+              aria-label="Working toward UI/UX and eventually Product Design">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Working toward UI/UX and eventually Product Design</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tab 3 Panel: Stats -->
+        <div class="what-i-do-services-wrapper is-tab-hidden" id="tab-panel-stats" role="tabpanel"
+          aria-labelledby="tab-stats" hidden>
+          <div class="what-i-do-services-list" id="servicesList-stats" role="list" aria-label="Stats and Highlights">
+
+            <!-- Item 1: 03+ Featured Projects (Selected by default) -->
+            <div class="what-i-do-item is-selected" data-index="0" role="listitem" tabindex="0"
+              aria-label="03+ Featured Projects">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">03+ Featured Projects</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 2: Live Café Website -->
+            <div class="what-i-do-item" data-index="1" role="listitem" tabindex="0" aria-label="Live Café Website">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Live Café Website</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 3: Live Wix Studio Websites -->
+            <div class="what-i-do-item" data-index="2" role="listitem" tabindex="0"
+              aria-label="Live Wix Studio Websites">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Live Wix Studio Websites</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 4: Atsuko _Offline MusicPlayer -->
+            <div class="what-i-do-item" data-index="3" role="listitem" tabindex="0"
+              aria-label="Atsuko _Offline MusicPlayer">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Atsuko _Offline MusicPlayer</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 5: Windows Gallery UI Concept -->
+            <div class="what-i-do-item" data-index="4" role="listitem" tabindex="0"
+              aria-label="Windows Gallery UI Concept">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Windows Gallery UI Concept</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 6: Primary Design Tool - Figma -->
+            <div class="what-i-do-item" data-index="5" role="listitem" tabindex="0"
+              aria-label="Primary Design Tool - Figma">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title">Primary Design Tool - Figma</h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Item 7: Languages Hindi + English -->
+            <div class="what-i-do-item" data-index="6" role="listitem" tabindex="0"
+              aria-label="Languages: Hindi + English">
+              <div class="what-i-do-item-inner">
+                <h3 class="what-i-do-item-title what-i-do-item-multiline">
+                  <span>Languages</span>
+                  <span class="what-i-do-item-subline">Hindi + English</span>
+                </h3>
+              </div>
+              <div class="what-i-do-dashed-line" aria-hidden="true"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= ABOUT PAGE MINIMAL FOOTER (Dark Bottom Strip) ================= -->
+    <footer class="about-page-footer" aria-label="Site Footer">
+      <div class="about-footer-container">
+
+        <!-- Left: Social Links with Dot Separator -->
+        <nav class="about-footer-socials" aria-label="Social Profiles">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+            class="about-footer-link">LinkedIn</a>
+          <span class="about-footer-dot" aria-hidden="true">•</span>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="about-footer-link">GitHub</a>
+          <span class="about-footer-dot" aria-hidden="true">•</span>
+          <a href="https://behance.net" target="_blank" rel="noopener noreferrer" class="about-footer-link">Behance</a>
+        </nav>
+
+        <!-- Center: Year -->
+        <div class="about-footer-year">2026</div>
+
+        <!-- Right: Email Link -->
+        <div class="about-footer-email">
+          <a href="mailto:hello@ravenink.com" class="about-footer-link"
+            aria-label="Send email to hello@ravenink.com">hello@ravenink.com</a>
+        </div>
+
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Interaction Logic -->
+  <script src="main.js"></script>
+</body>
+
+</html>

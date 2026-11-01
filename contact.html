@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Mohit | UI/UX & Web Designer</title>
+  <meta name="description" content="Get in touch with Mohit — UI/UX and Web Designer. Reach out for web design, Figma prototyping, Wix Studio development, or custom brand design.">
+  <meta name="author" content="Mohit">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#161616">
+  <link rel="canonical" href="https://mohitportfolio.com/contact.html">
+
+  <!-- Open Graph / Social Media Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mohitportfolio.com/contact.html">
+  <meta property="og:site_name" content="Mohit Portfolio">
+  <meta property="og:title" content="Contact — Mohit | UI/UX & Web Designer">
+  <meta property="og:description" content="Let’s connect! Contact Mohit for UI/UX design, responsive website building, and creative problem solving.">
+  <meta property="og:image" content="https://mohitportfolio.com/Assets/MainLogo.svg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Font Optimization -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Caveat:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="contact-page-body">
+
+  <!-- Skip to Main Content Link for Keyboard Accessibility -->
+  <a href="#contact-main" class="skip-link">Skip to main content</a>
+
+  <!-- Top Fixed Navigation Bar (Smart Scroll-Direction Header) -->
+  <nav class="nav-bar" aria-label="Main Navigation">
+    <div class="nav-container">
+      <!-- Brand Logo (User's Current Logo Asset) -->
+      <a href="index.html" class="brand-logo" aria-label="Mohit — Home">
+        <img src="Assets/logo.svg" alt="Mohit — UI/UX & Web Designer" class="logo-img" width="52" height="38">
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <div class="desktop-nav-links" id="desktopNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="ui-elements.html" class="nav-link nav-link-canvas" aria-label="Interactive Canvas">Ca<span class="nav-canvas-dim">nva</span>s</a>
+        <a href="about.html" class="nav-link">AboutMe</a>
+        <a href="contact.html" class="nav-link active" aria-current="page">Contact</a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-hamburger" id="hamburgerBtn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="desktopNav">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Landmark -->
+  <main id="main-content">
+
+    <!-- ================= CONTACT SPLIT SECTION (Left: #161616 | Right: #292929) ================= -->
+    <section class="contact-split-section" id="contact-main" aria-label="Contact and Inquiries">
+      
+      <!-- LEFT PANEL (#161616 Deep Black with Ambient Dashed Boxes & Typography) -->
+      <div class="contact-left-panel">
+        
+        <!-- Ambient Floating Dashed Rectangles -->
+        <div class="contact-dashed-box box-top float-anim-1" aria-hidden="true"></div>
+        <div class="contact-dashed-box box-mid float-anim-2" aria-hidden="true"></div>
+        <div class="contact-dashed-box box-bot float-anim-3" aria-hidden="true"></div>
+
+        <!-- Main Headline & Social Links -->
+        <div class="contact-left-content">
+          <h1 class="contact-main-heading">
+            <span class="heading-line">Let’s</span>
+            <span class="heading-line">Connect</span>
+          </h1>
+
+          <div class="contact-social-handles" aria-label="Social Profiles">
+            <div class="social-line">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact-social-item">Instagram.</a>
+            </div>
+            <div class="social-line">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-social-item">Linkdin.</a>
+              <span class="social-space" aria-hidden="true"> </span>
+              <a href="https://fiverr.com" target="_blank" rel="noopener noreferrer" class="contact-social-item">Fiverr</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT PANEL (#292929 Dark Gray Panel with Minimal Form & Quick Query Drawer) -->
+      <div class="contact-right-panel">
+        
+        <!-- Minimal Contact Form -->
+        <div class="contact-form-wrapper">
+          <form class="contact-form" id="contactForm" novalidate>
+            
+            <!-- Field 1: Name -->
+            <div class="form-field-group">
+              <label for="contactName" class="sr-only">Name</label>
+              <input type="text" id="contactName" name="name" class="form-input-line" placeholder="Name" required autocomplete="name">
+              <span class="form-line-bar" aria-hidden="true"></span>
+            </div>
+
+            <!-- Field 2: Email -->
+            <div class="form-field-group">
+              <label for="contactEmail" class="sr-only">Email</label>
+              <input type="email" id="contactEmail" name="email" class="form-input-line" placeholder="Email" required autocomplete="email">
+              <span class="form-line-bar" aria-hidden="true"></span>
+            </div>
+
+            <!-- Field 3: Your Message -->
+            <div class="form-field-group form-field-message">
+              <label for="contactMessage" class="sr-only">Your Message</label>
+              <textarea id="contactMessage" name="message" class="form-textarea-line" placeholder="Your Message" rows="5" required></textarea>
+              <span class="form-line-bar" aria-hidden="true"></span>
+            </div>
+
+            <!-- Form Action Row: Status Message & Proceed Button -->
+            <div class="form-action-row">
+              <div class="form-status-msg" id="formStatusMsg" aria-live="polite"></div>
+              <button type="submit" class="contact-proceed-btn" id="contactProceedBtn">Proceed</button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- RIGHT-EDGE EXPANDABLE QUICK QUERY DRAWER (#7F7F7F Gray Tab Stretches Open) -->
+        <aside class="quick-query-stack" id="quickQueryStack" aria-label="Quick Inquiries">
+          <div class="quick-query-card" id="quickQueryCard" tabindex="0" role="region" aria-label="Quick Query Drawer">
+            <div class="quick-query-card-body">
+              
+              <!-- Vertical Tab Handle -->
+              <div class="quick-query-tab" aria-hidden="true">
+                <span class="qq-letter">Q</span>
+                <span class="qq-letter">u</span>
+                <span class="qq-letter">i</span>
+                <span class="qq-letter">c</span>
+                <span class="qq-letter">k</span>
+                <span class="qq-space"></span>
+                <span class="qq-letter">Q</span>
+                <span class="qq-letter">u</span>
+                <span class="qq-letter">e</span>
+                <span class="qq-letter">r</span>
+                <span class="qq-letter">y</span>
+              </div>
+
+              <!-- Vertical Divider Line -->
+              <div class="quick-query-divider" aria-hidden="true"></div>
+
+              <!-- Expanded Content List -->
+              <div class="quick-query-content">
+                <div class="quick-query-list" role="list">
+                  
+                  <!-- Option 1: Book a Google Meet -->
+                  <button type="button" class="qq-option-btn" data-query="I would like to book a Google Meet to discuss a new design project." role="listitem">
+                    <span class="qq-option-text">Book a Google Meet</span>
+                    <span class="qq-underline-bar" aria-hidden="true"></span>
+                  </button>
+
+                  <!-- Option 2: Want to create a Brand -->
+                  <button type="button" class="qq-option-btn" data-query="I want to create a brand identity and logo design for my business." role="listitem">
+                    <span class="qq-option-text">Want to create a Brand</span>
+                    <span class="qq-underline-bar" aria-hidden="true"></span>
+                  </button>
+
+                  <!-- Option 3: Want a Quick site? -->
+                  <button type="button" class="qq-option-btn" data-query="I need a quick, modern, and responsive website built efficiently." role="listitem">
+                    <span class="qq-option-text">Want a Quick site?</span>
+                    <span class="qq-underline-bar" aria-hidden="true"></span>
+                  </button>
+
+                  <!-- Option 4: Want a Specified Template? -->
+                  <button type="button" class="qq-option-btn" data-query="I want a custom Figma or Wix Studio template tailored to my specifications." role="listitem">
+                    <span class="qq-option-text">Want a Specified Template?</span>
+                    <span class="qq-underline-bar" aria-hidden="true"></span>
+                  </button>
+
+                  <!-- Option 5: Mobile Version -->
+                  <button type="button" class="qq-option-btn" data-query="I want a dedicated mobile version and responsive optimization for my website." role="listitem">
+                    <span class="qq-option-text">Mobile Version</span>
+                  </button>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </aside>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Interaction Logic -->
+  <script src="main.js"></script>
+</body>
+</html>
