@@ -150,10 +150,11 @@ function initProjectsGallery() {
     descriptionElement.classList.add('is-switching');
 
     if (switchTimeout) clearTimeout(switchTimeout);
+    const switchDelay = window.innerWidth <= 768 ? 440 : 240;
     switchTimeout = setTimeout(() => {
       descriptionElement.textContent = data.description;
       descriptionElement.classList.remove('is-switching');
-    }, 240);
+    }, switchDelay);
   }
 
   const isTouchDevice = () => window.matchMedia('(hover: none) and (pointer: coarse)').matches;
@@ -184,7 +185,8 @@ function initProjectsGallery() {
         return;
       }
 
-      if (isTouchDevice() && card.getAttribute('data-project') !== currentActiveId) {
+      const isMobileView = window.innerWidth <= 768 || isTouchDevice();
+      if (isMobileView && card.getAttribute('data-project') !== currentActiveId) {
         e.preventDefault();
         setActiveProject(projectId);
         return;
@@ -206,6 +208,56 @@ function initProjectsGallery() {
       }
     });
   });
+
+  // Mobile Scroll-Driven Auto-Expansion (Mobile View Only)
+  // When scrolling down, cards start closed and automatically expand when reaching the lower-middle zone (~58% of viewport height).
+  // The previously open card collapses, and the same seamless behavior occurs when scrolling back up.
+  let scrollTicking = false;
+
+  function handleMobileProjectScroll() {
+    if (window.innerWidth > 768) return;
+
+    const vh = window.innerHeight;
+    const focusY = vh * 0.58;
+
+    const container = document.getElementById('projectsCards');
+    if (!container) return;
+    const containerRect = container.getBoundingClientRect();
+    if (containerRect.bottom < 0 || containerRect.top > vh) return;
+
+    const cardsArray = Array.from(projectCards);
+    const modelCard = cardsArray.find(c => c.getAttribute('data-project') === 'model');
+    const musicoCard = cardsArray.find(c => c.getAttribute('data-project') === 'musico');
+
+    if (modelCard && musicoCard) {
+      const modelRect = modelCard.getBoundingClientRect();
+      const musicoRect = musicoCard.getBoundingClientRect();
+
+      let targetProjectId = 'brew';
+
+      if (musicoRect.top <= focusY) {
+        targetProjectId = 'musico';
+      } else if (modelRect.top <= focusY) {
+        targetProjectId = 'model';
+      } else {
+        targetProjectId = 'brew';
+      }
+
+      if (targetProjectId !== currentActiveId) {
+        setActiveProject(targetProjectId);
+      }
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        handleMobileProjectScroll();
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
 }
 
 /**
