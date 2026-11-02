@@ -3215,75 +3215,257 @@ body.menu-open {
 }
 
 @media (max-width: 768px) {
+  /* 1. About Hero Section: 100dvh sticky hero with portrait at top and typography at bottom */
   .about-hero-section {
-    --about-hero-pb: clamp(2rem, 5vh, 3.5rem);
-    --about-typo-mb: 1rem;
-    padding-bottom: var(--about-hero-pb);
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-top: 90px;
+    padding-bottom: max(3.5rem, calc(env(safe-area-inset-bottom, 24px) + 2.2rem));
+    padding-left: var(--hero-px);
+    padding-right: var(--hero-px);
+    box-sizing: border-box;
+    overflow: hidden;
+    user-select: none;
+    z-index: 1;
   }
 
+  /* 2. Portrait Container: Positioned lower down, directly above the "Hi!" text block for unified connection */
   .about-portrait-wrapper {
-    left: 65%;
-    bottom: calc(var(--about-hero-pb) + var(--about-typo-mb));
-    height: clamp(280px, 42vh, 360px);
-    width: clamp(220px, 45vw, 300px);
-    opacity: 0.45;
+    position: absolute;
+    left: 50%;
+    top: clamp(145px, 18vh, 180px);
+    bottom: auto;
+    transform: translateX(-50%);
+    width: clamp(270px, 70vw, 350px);
+    height: clamp(280px, 36vh, 340px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    opacity: 1 !important;
+    pointer-events: none;
+    z-index: 5;
   }
 
-  .about-tag-designer {
-    top: 14%;
-    left: 6%;
-    padding: 6px 14px;
-    font-size: 13px;
-    min-width: 110px;
-    height: 36px;
+  .about-portrait-img {
+    height: 100%;
+    max-height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    display: block;
+    animation: aboutPortraitWobble 7s ease-in-out infinite;
   }
 
+  /* 3. Floating Dashed Buttons: Styled identical to Homepage mobile view */
+  .about-tag-designer,
   .about-tag-learner {
-    top: 26%;
-    left: 12%;
-    padding: 6px 14px;
-    font-size: 13px;
-    min-width: 100px;
-    height: 36px;
+    position: absolute;
+    background-color: var(--color-hero-base, #161616);
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%23666666' stroke-width='1.2' stroke-dasharray='10%2c 7' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e") !important;
+    border: none !important;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: clamp(14px, 3.8vw, 15.5px);
+    font-weight: 500;
+    color: #8C8C8C;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    z-index: 10;
+    opacity: 0.42;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    min-width: unset;
+    height: auto;
+    transition: opacity 0.3s ease, background-image 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease, color 0.3s ease;
   }
 
+  .about-tag-designer:active,
+  .about-tag-designer.is-active,
+  .about-tag-designer:focus-visible,
+  .about-tag-learner:active,
+  .about-tag-learner.is-active,
+  .about-tag-learner:focus-visible {
+    opacity: 1;
+    color: #FFFFFF;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%23CCCCCC' stroke-width='1.5' stroke-dasharray='10%2c 7' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e") !important;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.03);
+  }
+
+  /* Tag 1: Designer — Moved lower down along with the portrait (top-left of photo) */
+  .about-tag-designer {
+    top: clamp(150px, 18.5vh, 185px);
+    left: clamp(8%, 10vw, 15%);
+    right: auto;
+    bottom: auto;
+  }
+
+  /* Tag 2: Learner — Moved lower down along with the portrait (bottom-right of photo, bridging to headline) */
+  .about-tag-learner {
+    top: clamp(420px, 50vh, 475px);
+    right: clamp(10%, 14vw, 18%);
+    left: auto;
+    bottom: auto;
+  }
+
+  /* 4. Typography Block: Shifted higher up and to the right side (matching homepage positioning) */
   .about-hero-typography {
-    margin-bottom: 1rem;
+    position: relative;
+    z-index: 10;
+    margin-left: 14px;
+    margin-bottom: clamp(24px, 4.5vh, 38px);
+    max-width: 100%;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .about-hero-headline {
+    margin: 0;
+    line-height: 1;
+    gap: 4px;
   }
 
   .about-hi-text,
   .name-mohit {
-    font-size: clamp(38px, 9vw, 54px);
+    font-size: clamp(3.2rem, 13.8vw, 4.2rem);
+    font-weight: 700;
+    line-height: 0.98;
+    color: var(--color-text-white, #FFFFFF);
+    letter-spacing: -0.015em;
+  }
+
+  .about-im-mohit {
+    gap: clamp(10px, 2.5vw, 16px);
   }
 
   .script-im {
-    font-size: clamp(42px, 10vw, 60px);
+    font-size: clamp(3.4rem, 14.5vw, 4.4rem);
+    line-height: 0.85;
+  }
+
+  .im-underline-bar {
+    height: 3.5px;
+    min-width: clamp(48px, 12vw, 68px);
+    margin-top: 4px;
   }
 
   .about-hero-subtext {
-    font-size: 14px;
+    font-size: clamp(17px, 4.6vw, 19.5px);
+    font-weight: 700;
+    margin-top: 10px;
+    gap: 16px;
+    letter-spacing: 0.02em;
   }
 
+  /* 5. Right-Side 3 Stretched Roles Cards: Increased Card Heights a little bit more */
+  .about-roles-stack {
+    top: calc(50% + 22px);
+    transform: translateY(-50%);
+    gap: 14px;
+    z-index: 25;
+  }
+
+  .about-role-card-body {
+    width: 40px;
+    border-radius: 12px 0 0 12px;
+    background-color: #888888;
+    box-shadow: -2px 3px 10px rgba(0, 0, 0, 0.45);
+    transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.5s ease;
+  }
+
+  /* Increased heights (+14px to +16px more): Designer to 178px, Creator & Learner to 160px */
   .about-role-card[data-role="designer"] .about-role-card-body {
-    height: 138px;
+    height: 178px !important;
   }
 
   .about-role-card[data-role="creator"] .about-role-card-body,
   .about-role-card[data-role="learner"] .about-role-card-body {
-    height: 122px;
+    height: 160px !important;
+  }
+
+  .about-role-tab {
+    width: 40px;
+    min-width: 40px;
+    padding: 14px 0;
+    gap: 4px;
+    box-sizing: border-box;
+  }
+
+  .role-letter {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #161616;
+    line-height: 1.15;
   }
 
   .about-role-card:hover .about-role-card-body,
   .about-role-card:focus-visible .about-role-card-body,
   .about-role-card.is-active .about-role-card-body {
-    width: calc(100vw - 20px);
+    width: calc(100vw - 32px);
+    max-width: 320px;
+    background-color: #888888 !important;
+    box-shadow: -6px 6px 24px rgba(0, 0, 0, 0.55);
+  }
+
+  .about-role-card.is-active .role-letter,
+  .about-role-card:hover .role-letter {
+    color: #161616 !important;
   }
 
   .about-role-text {
     font-size: 13px;
-    min-width: 240px;
-    max-width: 320px;
-    padding: 10px 14px 10px 6px;
+    font-weight: 700;
+    line-height: 1.45;
+    min-width: 220px;
+    max-width: 275px;
+    padding: 10px 14px 10px 8px;
+    color: #161616;
+  }
+}
+
+/* Extra Small Mobile Screens (< 380px) */
+@media (max-width: 380px) {
+  .about-hi-text,
+  .name-mohit {
+    font-size: clamp(2.55rem, 11.5vw, 3.1rem);
+  }
+
+  .script-im {
+    font-size: clamp(2.7rem, 12vw, 3.3rem);
+  }
+
+  .about-portrait-wrapper {
+    top: 135px;
+    width: 260px;
+    height: 270px;
+  }
+
+  .about-tag-designer {
+    top: 140px;
+    left: 4%;
+  }
+
+  .about-tag-learner {
+    top: 385px;
+    right: 8%;
+  }
+
+  .about-hero-typography {
+    margin-left: 8px;
+    margin-bottom: 20px;
   }
 }
 
@@ -3508,6 +3690,14 @@ body.menu-open {
   }
 }
 
+@media (max-width: 768px) {
+  .about-dynamic-text {
+    font-size: clamp(17.5px, 4.4vw, 19.5px);
+    line-height: 1.6;
+    text-align: justify;
+  }
+}
+
 @media (max-width: 600px) {
   .about-details-section {
     border-top-left-radius: 32px;
@@ -3520,8 +3710,9 @@ body.menu-open {
   }
 
   .about-dynamic-text {
-    font-size: 15.5px;
-    line-height: 1.5;
+    font-size: clamp(17.5px, 4.4vw, 19.5px);
+    line-height: 1.6;
+    text-align: justify;
   }
 }
 
@@ -3652,15 +3843,21 @@ body.menu-open {
 /* Responsive adjustments for Services List */
 @media (max-width: 768px) {
   .what-i-do-item-inner {
-    padding: clamp(16px, 2.4vh, 24px) clamp(0.75rem, 2vw, 1.25rem);
+    padding: clamp(18px, 2.6vh, 26px) clamp(0.85rem, 2.2vw, 1.35rem);
   }
 
   .what-i-do-item-title {
-    font-size: clamp(20px, 5.2vw, 28px);
+    font-size: clamp(23px, 5.8vw, 30px);
   }
 
   .what-i-do-services-wrapper {
-    margin-top: 2rem;
+    margin-top: 2.2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .what-i-do-item-title {
+    font-size: 21px;
   }
 }
 
@@ -3740,9 +3937,36 @@ body.menu-open {
 @media (max-width: 768px) {
   .about-footer-container {
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
     text-align: center;
     justify-content: center;
+    font-size: clamp(15.5px, 4.2vw, 17.5px);
+  }
+
+  .about-footer-socials {
+    font-size: clamp(15.5px, 4.2vw, 17.5px);
+    gap: 10px;
+    font-weight: 700;
+  }
+
+  .about-footer-link {
+    font-size: clamp(15.5px, 4.2vw, 17.5px);
+    font-weight: 700;
+  }
+
+  .about-footer-dot {
+    font-size: clamp(15.5px, 4.2vw, 17.5px);
+    margin: 0 2px;
+  }
+
+  .about-footer-year {
+    font-size: clamp(15.5px, 4.2vw, 17.5px);
+    font-weight: 700;
+  }
+
+  .about-footer-email .about-footer-link {
+    font-size: clamp(16.5px, 4.5vw, 18.5px);
+    font-weight: 700;
   }
 }
 
@@ -4184,8 +4408,8 @@ body.menu-open {
   pointer-events: auto;
 }
 
-/* Responsive adjustments for Contact Page */
-@media (max-width: 900px) {
+/* Responsive adjustments for Contact Page (Tablet) */
+@media (min-width: 769px) and (max-width: 900px) {
   .contact-split-section {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -4216,6 +4440,276 @@ body.menu-open {
 
   .qq-option-text {
     font-size: 15px;
+  }
+}
+
+/* ==========================================================================
+   MOBILE CONTACT PAGE (Mobile Viewport 100vh / No Scrollbar)
+   Exact match to user's design mockup (media_1793595533379_a6787db7.png):
+   - Strict 100vh / 100dvh fit, overflow: hidden (zero scrollbar)
+   - Fixed 90px header with logo and hamburger
+   - Middle section: Form (#292929) with Name, Email, Your Message, Proceed
+   - Right side: Quick Query expandable hover/tap button
+   - Bottom section: Social links strip (#161616) with large italic typography
+   - "Let's Connect" and ambient dashed boxes totally hidden
+   ========================================================================== */
+@media (max-width: 768px) {
+  html:has(body.contact-page-body),
+  body.contact-page-body {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden !important;
+  }
+
+  body.contact-page-body #main-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  body.contact-page-body .contact-split-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 90px;
+    height: calc(100vh - 90px);
+    height: calc(100dvh - 90px);
+    min-height: calc(100dvh - 90px);
+    max-height: calc(100dvh - 90px);
+    overflow: hidden;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  /* 1. Middle Form Section (#292929) */
+  body.contact-page-body .contact-right-panel {
+    order: 1;
+    flex: 1 1 auto;
+    background-color: #292929;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(20px, 3.2vh, 32px) clamp(18px, 5vw, 24px);
+    padding-right: clamp(48px, 12vw, 56px);
+    overflow: hidden;
+  }
+
+  body.contact-page-body .contact-form-wrapper {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  body.contact-page-body .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(18px, 3.2vh, 28px);
+    width: 100%;
+  }
+
+  body.contact-page-body .form-input-line,
+  body.contact-page-body .form-textarea-line {
+    font-size: clamp(17px, 4.4vw, 20px);
+    padding: 8px 0 6px 0;
+    border-bottom: 1.5px solid #6E6E6E;
+    color: #FFFFFF;
+  }
+
+  body.contact-page-body .form-input-line::placeholder,
+  body.contact-page-body .form-textarea-line::placeholder {
+    font-size: clamp(17px, 4.4vw, 20px);
+    color: #8C8C8C;
+  }
+
+  body.contact-page-body .form-textarea-line {
+    min-height: 70px;
+    height: clamp(75px, 11vh, 95px);
+    max-height: 110px;
+    resize: none;
+    line-height: 1.45;
+  }
+
+  body.contact-page-body .form-action-row {
+    margin-top: 2px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  body.contact-page-body .contact-proceed-btn {
+    font-family: var(--font-body);
+    font-size: clamp(18px, 4.5vw, 21px);
+    font-weight: 700;
+    color: #DEDEDE;
+    letter-spacing: 0.02em;
+    padding: 6px 0;
+    margin-left: auto;
+    text-align: right;
+  }
+
+  /* 2. Expandable Quick Query Tab on Right Edge */
+  body.contact-page-body .quick-query-stack {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 30;
+  }
+
+  body.contact-page-body .quick-query-card-body {
+    width: 44px;
+    height: clamp(230px, 35vh, 275px);
+    border-radius: 12px 0 0 12px;
+    background-color: #888888;
+    box-shadow: -4px 4px 16px rgba(0, 0, 0, 0.45);
+  }
+
+  body.contact-page-body .quick-query-tab {
+    width: 44px;
+    min-width: 44px;
+    padding: 10px 0;
+    gap: 1.5px;
+  }
+
+  body.contact-page-body .qq-letter {
+    font-size: 13px;
+    font-weight: 700;
+    color: #161616;
+  }
+
+  body.contact-page-body .quick-query-card:hover .quick-query-card-body,
+  body.contact-page-body .quick-query-card:focus-visible .quick-query-card-body,
+  body.contact-page-body .quick-query-card.is-active .quick-query-card-body {
+    width: calc(100vw - 28px);
+    max-width: 310px;
+    background-color: #8E8E8E;
+  }
+
+  body.contact-page-body .quick-query-content {
+    min-width: 240px;
+    max-width: 280px;
+    padding: 14px 16px 14px 8px;
+  }
+
+  body.contact-page-body .quick-query-list {
+    gap: 12px;
+  }
+
+  body.contact-page-body .qq-option-text {
+    font-size: 14px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  body.contact-page-body .qq-underline-bar {
+    width: 85px;
+    margin-top: 5px;
+    margin-bottom: 2px;
+  }
+
+  /* 3. Bottom Social Handles Strip (#161616) */
+  body.contact-page-body .contact-left-panel {
+    order: 2;
+    flex: 0 0 auto;
+    background-color: var(--color-hero-base, #161616);
+    padding: clamp(22px, 3.6vh, 34px) clamp(18px, 5vw, 24px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
+    user-select: none;
+    z-index: 10;
+  }
+
+  /* "Let's Connect" and dashed boxes are completely gone on mobile */
+  body.contact-page-body .contact-dashed-box,
+  body.contact-page-body .contact-main-heading {
+    display: none !important;
+  }
+
+  body.contact-page-body .contact-left-content {
+    gap: 0;
+    width: 100%;
+  }
+
+  body.contact-page-body .contact-social-handles {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+  }
+
+  body.contact-page-body .contact-social-handles .social-line {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  body.contact-page-body .contact-social-item {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: clamp(22px, 6.2vw, 28px);
+    font-weight: 400;
+    color: #DEDEDE;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+}
+
+/* Extra small devices (<= 380px) */
+@media (max-width: 380px) {
+  body.contact-page-body .contact-right-panel {
+    padding: 16px 14px;
+    padding-right: 46px;
+  }
+
+  body.contact-page-body .contact-form {
+    gap: 14px;
+  }
+
+  body.contact-page-body .form-input-line,
+  body.contact-page-body .form-textarea-line {
+    font-size: 16px;
+  }
+
+  body.contact-page-body .form-input-line::placeholder,
+  body.contact-page-body .form-textarea-line::placeholder {
+    font-size: 16px;
+  }
+
+  body.contact-page-body .form-textarea-line {
+    height: 65px;
+    min-height: 60px;
+  }
+
+  body.contact-page-body .contact-proceed-btn {
+    font-size: 17px;
+  }
+
+  body.contact-page-body .quick-query-card-body {
+    width: 40px;
+    height: 220px;
+  }
+
+  body.contact-page-body .quick-query-tab {
+    width: 40px;
+    min-width: 40px;
+  }
+
+  body.contact-page-body .qq-letter {
+    font-size: 12px;
+  }
+
+  body.contact-page-body .contact-left-panel {
+    padding: 18px 14px;
+  }
+
+  body.contact-page-body .contact-social-item {
+    font-size: 21px;
   }
 }
 
@@ -4532,15 +5026,15 @@ body.menu-open {
   object-position: top left;
 }
 
-/* --- Docked Vertical Tech Indicator Stack (CSS, JS) --- */
+/* --- Docked Vertical Tech Indicator Stack (HTML, CSS, JS, UX, WIX, AI) --- */
 .docked-tech-stack {
   position: fixed;
   right: 0;
-  top: 54%;
+  top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: clamp(8px, 1.2vh, 11px);
   z-index: 90;
   pointer-events: auto;
 }
@@ -4548,7 +5042,7 @@ body.menu-open {
 .docked-tech-pill {
   background-color: #FFFFFF;
   color: #161616;
-  padding: 16px 11px;
+  padding: clamp(10px, 1.3vh, 13px) 11px;
   border-radius: 12px 0 0 12px;
   display: flex;
   flex-direction: column;
@@ -4670,20 +5164,32 @@ body.menu-open {
   }
 
   .project-placeholder-box {
-    border-radius: 20px;
+    border-radius: 18px;
   }
 
   .projects-secondary-grid {
     gap: 14px;
   }
 
+  .projects-secondary-grid .project-card-secondary,
+  .project-card-secondary {
+    border-radius: 18px;
+  }
+
+  .docked-tech-stack {
+    top: 50%;
+    transform: translateY(-50%);
+    gap: clamp(10px, 1.6vh, 14px);
+  }
+
   .docked-tech-pill {
-    padding: 12px 8px;
+    padding: clamp(7px, 1vh, 9px) clamp(6px, 1.8vw, 8px);
     border-radius: 8px 0 0 8px;
   }
 
   .docked-tech-letter {
-    font-size: 12px;
+    font-size: 11.5px;
+    line-height: 1.1;
   }
 
   .fluid-hover-card {
@@ -7107,7 +7613,7 @@ body.menu-open {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .projects-pair-grid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -7115,7 +7621,7 @@ body.menu-open {
 
   .pill-row {
     flex-wrap: wrap;
-    gap: 10px;
+    gap: clamp(10px, 2.5vw, 14px);
   }
 
   .pill-row-1 .chip-pill-2,
@@ -7129,27 +7635,59 @@ body.menu-open {
     margin-top: 0;
   }
 
+  /* 1. Explore MySketchbook: enlarged and centered in the middle of the box */
   .projects-sketchbook-teaser {
     gap: 12px;
-    height: 110px;
+    height: 120px;
   }
 
   .sketchbook-cta-card {
     padding: 14px 18px;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
-  .sketchbook-cta-title,
-  .sketchbook-cta-sub {
-    font-size: 13.5px;
+  .sketchbook-cta-title {
+    font-size: clamp(16px, 4.2vw, 19px);
+    font-weight: 500;
+    text-align: center;
   }
 
   .sketchbook-cta-sub {
-    margin-left: 12px;
+    font-size: clamp(17px, 4.5vw, 20px);
+    font-weight: 700;
+    margin-left: 0;
+    margin-top: 4px;
+    text-align: center;
   }
 
   .sketchbook-img-card {
     border-radius: 20px;
+  }
+
+  /* 2. What can I build? Section: enlarged title & bigger floating chip boxes with larger font */
+  .build-skills-title {
+    font-size: clamp(26px, 6.8vw, 34px);
+    font-weight: 700;
+    margin-bottom: clamp(18px, 2.6vh, 26px);
+  }
+
+  .build-tags-cloud {
+    gap: clamp(12px, 1.8vh, 18px);
+  }
+
+  .build-tag-chip {
+    padding: clamp(10px, 1.4vh, 14px) clamp(18px, 4.6vw, 24px);
+    border-radius: 9999px;
+  }
+
+  .chip-inner-text {
+    font-size: clamp(15px, 3.8vw, 17.5px);
+    font-weight: 500;
   }
 }
 
@@ -7218,8 +7756,35 @@ body.menu-open {
 @media (max-width: 768px) {
   .projects-footer-container {
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
     text-align: center;
     justify-content: center;
+    font-size: clamp(15.5px, 4.2vw, 17.5px);
+  }
+
+  .projects-footer-socials {
+    font-size: clamp(15.5px, 4.2vw, 17.5px);
+    gap: 10px;
+    font-weight: 700;
+  }
+
+  .projects-footer-link {
+    font-size: clamp(15.5px, 4.2vw, 17.5px);
+    font-weight: 700;
+  }
+
+  .projects-footer-dot {
+    font-size: clamp(15.5px, 4.2vw, 17.5px);
+    margin: 0 2px;
+  }
+
+  .projects-footer-year {
+    font-size: clamp(15.5px, 4.2vw, 17.5px);
+    font-weight: 700;
+  }
+
+  .projects-footer-email .projects-footer-link {
+    font-size: clamp(16.5px, 4.5vw, 18.5px);
+    font-weight: 700;
   }
 }
