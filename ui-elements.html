@@ -34,33 +34,44 @@
 <body class="canvas-page-body">
 
   <!-- Fixed Top Floating Navigation Bar -->
-  <header class="canvas-top-nav" aria-label="Canvas Navigation">
-    <div class="canvas-nav-left">
-      <a href="projects.html" class="canvas-back-btn" aria-label="Return to Projects page">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-        <span>Back to Projects</span>
-      </a>
-      <a href="index.html" class="canvas-brand-logo" aria-label="Mohit — Home">
-        <img src="Assets/logo.svg" alt="Mohit Logo" class="canvas-logo-img" width="46" height="34">
-      </a>
-    </div>
+  <header class="canvas-top-nav nav-bar" aria-label="Canvas Navigation">
+    <div class="nav-container canvas-nav-container">
+      <div class="canvas-nav-left">
+        <a href="projects.html" class="canvas-back-btn" id="canvasBackBtn" aria-label="Return to Projects page">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span class="canvas-back-text">Back to Projects</span>
+        </a>
+        <a href="index.html" class="canvas-brand-logo" aria-label="Mohit — Home">
+          <img src="Assets/logo.svg" alt="Mohit Logo" class="canvas-logo-img" width="32" height="24">
+        </a>
+      </div>
 
-    <!-- Canvas Navigation Title Indicator -->
-    <div class="canvas-nav-center">
-      <span class="canvas-status-pill">Interactive Canvas • Drag to Pan</span>
-    </div>
+      <!-- Canvas Navigation Title Indicator -->
+      <div class="canvas-nav-center">
+        <span class="canvas-status-pill">Interactive Canvas • Drag to Pan</span>
+      </div>
 
-    <nav class="canvas-nav-links" aria-label="Site Navigation">
-      <a href="index.html" class="canvas-nav-link">Home</a>
-      <a href="ui-elements.html" class="canvas-nav-link nav-link-canvas active" aria-current="page"
-        aria-label="Interactive Canvas">Ca<span class="nav-canvas-dim">nva</span>s</a>
-      <a href="about.html" class="canvas-nav-link">AboutMe</a>
-      <a href="contact.html" class="canvas-nav-link">Contact</a>
-    </nav>
+      <!-- Desktop Navigation Links & Mobile Overlay Menu -->
+      <div class="desktop-nav-links" id="desktopNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="ui-elements.html" class="nav-link nav-link-canvas active" aria-current="page"
+          aria-label="Interactive Canvas">Ca<span class="nav-canvas-dim">nva</span>s</a>
+        <a href="about.html" class="nav-link">AboutMe</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-hamburger" id="hamburgerBtn" aria-label="Toggle Navigation Menu" aria-expanded="false"
+        aria-controls="desktopNav">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
   </header>
 
   <!-- Interactive 2D Canvas Viewport Container -->
@@ -104,15 +115,18 @@
           <!-- Central Big Header -->
           <header class="canvas-hero-header">
             <h1 class="canvas-hero-title">
-              Explor<span class="canvas-title-accent">e_</span> MyPortfolio
+              <span class="canvas-title-prefix">Explor<span class="canvas-title-accent">e_</span> </span><span class="canvas-title-brand"><span class="canvas-title-my">My</span>Portfolio</span>
             </h1>
-            <p class="canvas-hero-subtitle">Design. Sketches. Html&amp;Css</p>
-            <p class="canvas-hero-intro">
-              Hey, I'm Mohit. I design digital experiences, build websites, and turn ideas into working products.
-              Alongside developing my own startup, I'm creating useful digital tools like Musico, a free offline music
-              player. This canvas brings together my designs, experiments, and projects as I continue exploring what's
-              possible.
-            </p>
+            <p class="canvas-hero-subtitle">Design. Wix Studio. Html&amp;Css</p>
+            <div class="canvas-hero-intro">
+              <p class="intro-p1">
+                creating useful digital tools like Musico, a free offline music player.
+                This canvas brings together my designs, experiments, and projects as I continue exploring what's possible.
+              </p>
+              <p class="intro-p2">
+                Hey, I'm Mohit. I design digital experiences, build websites, and turn ideas into working products. Alongside developing my own startup, I'm
+              </p>
+            </div>
           </header>
 
           <!-- Central Showcase Arrangement -->
@@ -142,11 +156,12 @@
             <!-- Reserved Area for White Circle Drawing Structure (to be provided later) -->
             <div class="canvas-circle-structure-space" aria-hidden="true"></div>
 
-            <!-- Under Buttons: Social Dropdown Widget -->
+            <!-- Under Buttons: Coffee Concept Login Card (matching mobile design reference) -->
             <article class="canvas-card card-social-dropdown" tabindex="0" role="button"
-              aria-label="Social Media Menu Interface Card">
-              <img src="Assets/UI Elements/thumbs/jt5.jpg" data-full-src="Assets/UI Elements/Code Items/jt5.jpg"
-                alt="Social Media Dropdown Interface" class="canvas-img" loading="eager" decoding="async">
+              aria-label="Coffee Concept Login Page Design">
+              <img src="Assets/Login Page Coffee _Project-5/Frame 245.webp"
+                data-full-src="Assets/Login Page Coffee _Project-5/Frame 245.webp" alt="Coffee Concept Login Page Design"
+                class="canvas-img" loading="eager" decoding="async">
             </article>
 
             <!-- Vertical Design Sheet: TheBookStore -->
@@ -853,6 +868,7 @@
   </dialog>
 
   <!-- Interactive JavaScript Engine -->
+  <script src="main.js"></script>
   <script src="ui-canvas.js"></script>
 </body>
 

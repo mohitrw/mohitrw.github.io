@@ -89,6 +89,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const zoneTop = centerZone.offsetTop;
     const zoneWidth = centerZone.offsetWidth;
 
+    // Mobile View: Align to the custom mobile home viewport (shifted 56px lower side, 12px right side)
+    if (vpWidth <= 768) {
+      const targetX = (zoneLeft - 4) * currentZoom;
+      const targetY = (zoneTop - 90) * currentZoom;
+
+      viewport.scrollTo({
+        left: Math.max(0, targetX),
+        top: Math.max(0, targetY),
+        behavior: smooth ? 'smooth' : 'auto'
+      });
+      return;
+    }
+
     // Horizontally position so Explore_ MyPortfolio has generous padding on the left and is never cut off
     let targetX = (zoneLeft + 30 - 70) * currentZoom;
     if (vpWidth > zoneWidth * currentZoom + 140) {

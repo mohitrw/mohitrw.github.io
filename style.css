@@ -4483,7 +4483,7 @@ body.menu-open {
     background-color: transparent;
   }
 
-  /* 1. Middle Form Section (#292929) */
+  /* 1. Middle Form Section (#292929) - Covers the section with spacious message area */
   body.contact-page-body .contact-right-panel {
     order: 1;
     flex: 1 1 auto;
@@ -4491,56 +4491,72 @@ body.menu-open {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: clamp(20px, 3.2vh, 32px) clamp(18px, 5vw, 24px);
+    justify-content: flex-start;
+    padding: clamp(22px, 3.2vh, 30px) clamp(18px, 5vw, 24px) clamp(14px, 2vh, 18px);
     padding-right: clamp(48px, 12vw, 56px);
     overflow: hidden;
+    box-sizing: border-box;
   }
 
   body.contact-page-body .contact-form-wrapper {
     max-width: 100%;
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   body.contact-page-body .contact-form {
     display: flex;
     flex-direction: column;
-    gap: clamp(18px, 3.2vh, 28px);
+    height: 100%;
     width: 100%;
+    gap: clamp(14px, 2.2vh, 22px);
   }
 
   body.contact-page-body .form-input-line,
   body.contact-page-body .form-textarea-line {
-    font-size: clamp(17px, 4.4vw, 20px);
-    padding: 8px 0 6px 0;
+    font-size: clamp(20px, 5.2vw, 23px);
+    padding: 8px 0 8px 0;
     border-bottom: 1.5px solid #6E6E6E;
     color: #FFFFFF;
   }
 
   body.contact-page-body .form-input-line::placeholder,
   body.contact-page-body .form-textarea-line::placeholder {
-    font-size: clamp(17px, 4.4vw, 20px);
+    font-size: clamp(20px, 5.2vw, 23px);
     color: #8C8C8C;
   }
 
+  body.contact-page-body .form-field-message {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
   body.contact-page-body .form-textarea-line {
-    min-height: 70px;
-    height: clamp(75px, 11vh, 95px);
-    max-height: 110px;
+    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
+    min-height: 120px;
+    max-height: none;
     resize: none;
     line-height: 1.45;
+    box-sizing: border-box;
   }
 
   body.contact-page-body .form-action-row {
-    margin-top: 2px;
+    margin-top: clamp(6px, 1.2vh, 12px);
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    flex-shrink: 0;
   }
 
   body.contact-page-body .contact-proceed-btn {
     font-family: var(--font-body);
-    font-size: clamp(18px, 4.5vw, 21px);
+    font-size: clamp(21px, 5.5vw, 25px);
     font-weight: 700;
     color: #DEDEDE;
     letter-spacing: 0.02em;
@@ -4609,12 +4625,12 @@ body.menu-open {
     margin-bottom: 2px;
   }
 
-  /* 3. Bottom Social Handles Strip (#161616) */
+  /* 3. Bottom Social Handles Strip (#161616) - Increased height by 24px */
   body.contact-page-body .contact-left-panel {
     order: 2;
     flex: 0 0 auto;
     background-color: var(--color-hero-base, #161616);
-    padding: clamp(22px, 3.6vh, 34px) clamp(18px, 5vw, 24px);
+    padding: clamp(34px, 5.0vh, 46px) clamp(18px, 5vw, 24px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -4622,6 +4638,7 @@ body.menu-open {
     overflow: hidden;
     user-select: none;
     z-index: 10;
+    box-sizing: border-box;
   }
 
   /* "Let's Connect" and dashed boxes are completely gone on mobile */
@@ -4668,26 +4685,27 @@ body.menu-open {
   }
 
   body.contact-page-body .contact-form {
-    gap: 14px;
+    gap: 12px;
   }
 
   body.contact-page-body .form-input-line,
   body.contact-page-body .form-textarea-line {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   body.contact-page-body .form-input-line::placeholder,
   body.contact-page-body .form-textarea-line::placeholder {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   body.contact-page-body .form-textarea-line {
-    height: 65px;
-    min-height: 60px;
+    flex: 1 1 auto;
+    height: 100%;
+    min-height: 80px;
   }
 
   body.contact-page-body .contact-proceed-btn {
-    font-size: 17px;
+    font-size: 19px;
   }
 
   body.contact-page-body .quick-query-card-body {
@@ -4705,7 +4723,7 @@ body.menu-open {
   }
 
   body.contact-page-body .contact-left-panel {
-    padding: 18px 14px;
+    padding: 30px 14px;
   }
 
   body.contact-page-body .contact-social-item {
