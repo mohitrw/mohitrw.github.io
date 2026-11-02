@@ -633,17 +633,17 @@
       <!-- Footer Top Row: Social Links, Year, Email -->
       <div class="footer-top-row">
         <nav class="footer-social-links" aria-label="Social Profiles">
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/mohit-rw" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
           <span class="footer-dot" aria-hidden="true">·</span>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+          <a href="https://github.com/mohitrw" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
           <span class="footer-dot" aria-hidden="true">·</span>
-          <a href="https://behance.net" target="_blank" rel="noopener noreferrer" class="footer-link">Behance</a>
+          <a href="https://www.behance.net/mohitrw" target="_blank" rel="noopener noreferrer" class="footer-link">Behance</a>
         </nav>
         
         <div class="footer-year" aria-label="Current Year">2026</div>
 
         <div class="footer-email">
-          <a href="mailto:hello@ravenink.com" class="footer-link footer-email-link" aria-label="Send email to hello@ravenink.com">hello@ravenink.com</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hi.mohitrw@gmail.com" target="_blank" rel="noopener noreferrer" class="footer-link footer-email-link" aria-label="Send email to hi.mohitrw@gmail.com">hi.mohitrw@gmail.com</a>
         </div>
       </div>
 
@@ -658,20 +658,30 @@
 
       <!-- Footer Bottom Action Buttons (3 Dashed Buttons) -->
       <div class="footer-action-row" role="group" aria-label="Quick Inquiries">
-        <button class="footer-dashed-btn" id="btnBookMeet" type="button">
+        <a href="contact.html?query=meet" class="footer-dashed-btn" id="btnBookMeet" role="button">
           <span>Book a Google Meet</span>
-        </button>
-        <button class="footer-dashed-btn" id="btnCreateBrand" type="button">
+        </a>
+        <a href="contact.html?query=brand" class="footer-dashed-btn" id="btnCreateBrand" role="button">
           <span>Want to create a Brand</span>
-        </button>
-        <button class="footer-dashed-btn" id="btnQuickSite" type="button">
+        </a>
+        <a href="contact.html?query=site" class="footer-dashed-btn" id="btnQuickSite" role="button">
           <span>Want a Quick site?</span>
-        </button>
+        </a>
       </div>
 
     </div>
   </footer>
   </main>
+
+  <!-- Fixed Floating Action Button: View My Work (Bottom-Right Viewport Corner) -->
+  <a href="projects.html" class="floating-work-btn" id="floatingWorkBtn" aria-label="View My Work — Explore Projects">
+    <span class="floating-work-text">View My Work</span>
+    <span class="floating-work-icon" aria-hidden="true">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2.5 11.5L11.5 2.5M11.5 2.5H4.5M11.5 2.5V9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </a>
 
   <!-- Interaction Logic -->
   <script src="main.js"></script>

@@ -38,6 +38,88 @@
   padding: 0;
 }
 
+/* --- Custom UI Selection Highlight (Monochrome Design System) --- */
+/* Default on dark & gray backgrounds (#161616, #292929, #1C1C1C): White selection with dark text */
+::selection {
+  background-color: #FFFFFF;
+  color: #161616;
+}
+
+::-moz-selection {
+  background-color: #FFFFFF;
+  color: #161616;
+}
+
+/* On light & off-white backgrounds (#E2E2E2, #D8D8D8, #FFFFFF): Dark obsidian selection (#161616) with white text */
+.projects-section ::selection,
+.projects-section::selection,
+.why-work-section ::selection,
+.why-work-section::selection,
+.about-details-section ::selection,
+.about-details-section::selection,
+.site-footer ::selection,
+.site-footer::selection,
+.projects-page-footer ::selection,
+.projects-page-footer::selection,
+.card-sheet-white ::selection,
+.card-sheet-white::selection,
+.docked-tech-pill ::selection,
+.docked-tech-pill::selection,
+.contact-modal-action-btn ::selection,
+.contact-modal-action-btn::selection {
+  background-color: #161616;
+  color: #FFFFFF;
+}
+
+.projects-section ::-moz-selection,
+.projects-section::-moz-selection,
+.why-work-section ::-moz-selection,
+.why-work-section::-moz-selection,
+.about-details-section ::-moz-selection,
+.about-details-section::-moz-selection,
+.site-footer ::-moz-selection,
+.site-footer::-moz-selection,
+.projects-page-footer ::-moz-selection,
+.projects-page-footer::-moz-selection,
+.card-sheet-white ::-moz-selection,
+.card-sheet-white::-moz-selection,
+.docked-tech-pill ::-moz-selection,
+.docked-tech-pill::-moz-selection,
+.contact-modal-action-btn ::-moz-selection,
+.contact-modal-action-btn::-moz-selection {
+  background-color: #161616;
+  color: #FFFFFF;
+}
+
+/* Dark surfaces nested inside light sections (reverts to white selection with dark text) */
+.about-static-box ::selection,
+.about-static-box::selection,
+.all-projects-btn ::selection,
+.all-projects-btn::selection,
+.project-card-featured ::selection,
+.project-card-featured::selection,
+.project-placeholder-box ::selection,
+.project-placeholder-box::selection,
+.projects-cta-box ::selection,
+.projects-cta-box::selection {
+  background-color: #FFFFFF;
+  color: #161616;
+}
+
+.about-static-box ::-moz-selection,
+.about-static-box::-moz-selection,
+.all-projects-btn ::-moz-selection,
+.all-projects-btn::-moz-selection,
+.project-card-featured ::-moz-selection,
+.project-card-featured::-moz-selection,
+.project-placeholder-box ::-moz-selection,
+.project-placeholder-box::-moz-selection,
+.projects-cta-box ::-moz-selection,
+.projects-cta-box::-moz-selection {
+  background-color: #FFFFFF;
+  color: #161616;
+}
+
 /* --- Accessibility Skip to Content Link --- */
 .skip-link {
   position: absolute;
@@ -746,8 +828,8 @@ body.menu-open {
     background-color: var(--color-text-white, #FFFFFF);
     border-radius: 2px;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.2s ease,
-                top 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity 0.2s ease,
+      top 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     transform-origin: center;
   }
 
@@ -977,6 +1059,7 @@ body.menu-open {
       opacity: 0;
       transform: translateX(20px);
     }
+
     to {
       opacity: 1;
       transform: translateX(0);
@@ -1008,8 +1091,8 @@ body.menu-open {
 
   .skill-card-body {
     transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                background-color 0.5s ease;
+      box-shadow 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.5s ease;
   }
 
   /* Increased heights (+10px top, +10px bottom): UX, UI, AI to 88px; Wix to 104px - identical in resting & hovering state */
@@ -1076,7 +1159,7 @@ body.menu-open {
     display: flex;
     align-items: center;
     transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.12s,
-                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.12s;
+      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.12s;
   }
 
   /* On hover/active: height stays identically 88px / 104px, background stays #888888 */
@@ -1625,7 +1708,7 @@ body.menu-open {
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     transition: aspect-ratio 1.6s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow 1.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   /* Opened Project Card: 100% same width, height is double the width (1 : 2 ratio) */
@@ -1653,7 +1736,7 @@ body.menu-open {
     object-fit: cover;
     object-position: top center;
     transition: opacity 1.45s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 1.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transform 1.7s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
   }
 
@@ -1695,9 +1778,9 @@ body.menu-open {
     border-radius: 10px;
     z-index: 5;
     transition: bottom 1.4s cubic-bezier(0.16, 1, 0.3, 1),
-                left 1.4s cubic-bezier(0.16, 1, 0.3, 1),
-                padding 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-                background-color 1.2s ease;
+      left 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+      padding 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 1.2s ease;
   }
 
   .project-line,
@@ -1785,7 +1868,7 @@ body.menu-open {
     letter-spacing: 0.01em;
     text-align: justify;
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 }
 
@@ -2552,10 +2635,10 @@ body.menu-open {
   margin: 0;
 }
 
-/* --- Curved Off-White Footer Card (Slides UP over sticky Vision section) --- */
+/* --- Curved Off-White Footer Card (Slides UP over sticky Vision section & covers floating button) --- */
 .site-footer {
   position: relative;
-  z-index: 20;
+  z-index: 90;
   width: 100%;
   background-color: #E0E0E0;
   border-top-left-radius: clamp(36px, 5vw, 48px);
@@ -2656,6 +2739,10 @@ body.menu-open {
 }
 
 .footer-dashed-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   background-color: transparent;
   border: 1.5px dashed #2E2E2E;
   border-radius: 6px;
@@ -2681,7 +2768,8 @@ body.menu-open {
 
 /* Responsive adjustments for Vision & Site Footer */
 @media (max-width: 768px) {
-  /* Sticky Dark Vision Section: Anchored at top: 0 with exact 132px top padding & 56px bottom padding */
+
+  /* Sticky Dark Vision Section: Anchored at top: 0 with exact 132px top padding & 56px net bottom space (96px - 40px footer overlap) */
   .vision-section {
     position: sticky;
     top: 0;
@@ -2692,7 +2780,7 @@ body.menu-open {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 132px var(--hero-px) 56px var(--hero-px);
+    padding: 132px var(--hero-px) 96px var(--hero-px);
     overflow: hidden;
     user-select: none;
     box-sizing: border-box;
@@ -2723,10 +2811,11 @@ body.menu-open {
     margin: 0;
   }
 
-  /* Curved Off-White Reveal Footer: Slides UP over the sticky Vision section */
+  /* Curved Off-White Reveal Footer: Overlaps bottom 40px of Vision section so rounded corners always show #161616 */
   .site-footer {
     position: relative;
-    z-index: 20;
+    z-index: 90;
+    margin-top: -40px;
     border-top-left-radius: 36px;
     border-top-right-radius: 36px;
     padding: 3rem var(--hero-px) 3.8rem var(--hero-px);
@@ -2737,7 +2826,7 @@ body.menu-open {
     gap: 1.65rem;
   }
 
-  /* Top Row: Social links (LinkedIn · GitHub · Behance), Year (2026), Email (hello@ravenink.com) */
+  /* Top Row: Social links (LinkedIn · GitHub · Behance), Year (2026), Email (hi.mohitrw@gmail.com) */
   .footer-top-row {
     display: flex;
     flex-direction: row;
@@ -3215,6 +3304,7 @@ body.menu-open {
 }
 
 @media (max-width: 768px) {
+
   /* 1. About Hero Section: 100dvh sticky hero with portrait at top and typography at bottom */
   .about-hero-section {
     position: sticky;
@@ -3382,8 +3472,8 @@ body.menu-open {
     background-color: #888888;
     box-shadow: -2px 3px 10px rgba(0, 0, 0, 0.45);
     transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                background-color 0.5s ease;
+      box-shadow 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.5s ease;
   }
 
   /* Increased heights (+14px to +16px more): Designer to 178px, Creator & Learner to 160px */
@@ -3438,6 +3528,7 @@ body.menu-open {
 
 /* Extra Small Mobile Screens (< 380px) */
 @media (max-width: 380px) {
+
   .about-hi-text,
   .name-mohit {
     font-size: clamp(2.55rem, 11.5vw, 3.1rem);
@@ -3677,6 +3768,10 @@ body.menu-open {
     padding: 24px 20px;
   }
 
+  #box-social {
+    min-height: 330px;
+  }
+
   .about-box-list li {
     font-size: 14.5px;
   }
@@ -3867,7 +3962,7 @@ body.menu-open {
    - Full width dark strip (#161616)
    - Left: LinkedIn • GitHub • Behance
    - Center: 2026
-   - Right: hello@ravenink.com
+   - Right: hi.mohitrw@gmail.com
    - White monospace typography with hover effects
    ========================================================================== */
 
@@ -4249,6 +4344,212 @@ body.menu-open {
   border-radius: 4px;
 }
 
+.contact-proceed-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
+}
+
+/* Proceed Button Loading Spinner */
+.contact-btn-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: contactBtnSpin 0.7s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes contactBtnSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   CONTACT SUCCESS POP-UP MODAL (Web3Forms Integration)
+   - Matches portfolio dark aesthetics, obsidian background & clean typography
+   - Accessible: aria-modal, keyboard dismissal (Esc), backdrop tap
+   ========================================================================== */
+.contact-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background-color: rgba(12, 12, 12, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease-smooth), visibility 0.3s var(--ease-smooth);
+}
+
+.contact-modal-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.contact-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background-color: #1A1A1A;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  padding: 38px 30px 32px 30px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transform: scale(0.92) translateY(14px);
+  transition: transform 0.35s var(--ease-smooth);
+}
+
+.contact-modal-backdrop.is-open .contact-modal-card {
+  transform: scale(1) translateY(0);
+}
+
+.contact-modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  color: #A0A0A0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-modal-close-btn:hover,
+.contact-modal-close-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  transform: scale(1.08);
+  outline: none;
+}
+
+.contact-modal-icon-wrap {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(121, 210, 154, 0.12);
+  border: 1px solid rgba(121, 210, 154, 0.32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.contact-modal-tag {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #79D29A;
+  margin-bottom: 8px;
+}
+
+.contact-modal-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.2vw, 26px);
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-title-bar {
+  width: 42px;
+  height: 2px;
+  background: #FFFFFF;
+  margin-top: 8px;
+  border-radius: 1px;
+}
+
+.contact-modal-desc {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  line-height: 1.55;
+  color: #BFBFBF;
+  margin-bottom: 26px;
+  max-width: 340px;
+}
+
+.contact-modal-actions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.contact-modal-action-btn {
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #161616;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 36px;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-modal-action-btn:hover {
+  background-color: #EFEFEF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15);
+}
+
+.contact-modal-action-btn:active {
+  transform: translateY(0);
+}
+
+.contact-modal-action-btn:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .contact-modal-card {
+    padding: 32px 22px 26px 22px;
+    border-radius: 20px;
+  }
+
+  .contact-modal-desc {
+    font-size: 14.5px;
+    margin-bottom: 22px;
+  }
+
+  .contact-modal-action-btn {
+    width: 100%;
+    padding: 12px 24px;
+  }
+}
+
 /* ==========================================================================
    RIGHT-EDGE EXPANDABLE QUICK QUERY DRAWER (#7F7F7F)
    ========================================================================== */
@@ -4454,6 +4755,7 @@ body.menu-open {
    - "Let's Connect" and ambient dashed boxes totally hidden
    ========================================================================== */
 @media (max-width: 768px) {
+
   html:has(body.contact-page-body),
   body.contact-page-body {
     height: 100vh;
@@ -4492,7 +4794,7 @@ body.menu-open {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: clamp(22px, 3.2vh, 30px) clamp(18px, 5vw, 24px) clamp(14px, 2vh, 18px);
+    padding: clamp(36px, 4.8vh, 46px) clamp(18px, 5vw, 24px) clamp(28px, 3.8vh, 36px);
     padding-right: clamp(48px, 12vw, 56px);
     overflow: hidden;
     box-sizing: border-box;
@@ -4680,7 +4982,7 @@ body.menu-open {
 /* Extra small devices (<= 380px) */
 @media (max-width: 380px) {
   body.contact-page-body .contact-right-panel {
-    padding: 16px 14px;
+    padding: 26px 14px 22px;
     padding-right: 46px;
   }
 
@@ -5048,7 +5350,7 @@ body.menu-open {
 .docked-tech-stack {
   position: fixed;
   right: 0;
-  top: 50%;
+  top: calc(50% + 45px);
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -5159,7 +5461,7 @@ body.menu-open {
   }
 
   .docked-tech-stack {
-    top: 50%;
+    top: calc(50% + 45px);
   }
 }
 
@@ -7804,5 +8106,172 @@ body.menu-open {
   .projects-footer-email .projects-footer-link {
     font-size: clamp(16.5px, 4.5vw, 18.5px);
     font-weight: 700;
+  }
+}
+
+/* ==========================================================================
+   HOMEPAGE FIXED FLOATING ACTION BUTTON: "View My Work" (Bottom-Right)
+   - Fixed at bottom-right corner of viewport across homepage
+   - Controlled visual hierarchy: Subdued low-opacity border, text, and icon in idle state
+     so primary focus stays on the "UI/UX Web Designr" headline
+   - Larger comfortable box sizing (13px 26px) and 16px font size per user specifications
+   - Hover state retained with crisp pure white background (#FFFFFF) & dark text (#161616)
+   - Scaled & optimized for mobile viewports
+   ========================================================================== */
+
+.floating-work-btn {
+  position: fixed;
+  bottom: 34px;
+  right: 36px;
+  z-index: 95;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 26px;
+  background-color: rgba(20, 20, 20, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px dashed rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  text-decoration: none;
+  white-space: nowrap;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  user-select: none;
+  -webkit-user-select: none;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    border-style 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  animation: floatWorkEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both,
+    floatWorkAmbient 5s ease-in-out 1.6s infinite;
+}
+
+.floating-work-text {
+  opacity: 0.52;
+  transition: opacity 0.25s ease, color 0.25s ease;
+}
+
+.floating-work-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.46;
+  transition: opacity 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.floating-work-icon svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+/* Hover State: Fully preserved as requested (Solid White Background, #161616 text, full opacity) */
+.floating-work-btn:hover {
+  background-color: #FFFFFF;
+  border-color: #161616;
+  border-style: solid;
+  color: #161616;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 16px rgba(255, 255, 255, 0.15);
+  animation-play-state: paused;
+}
+
+.floating-work-btn:hover .floating-work-text {
+  opacity: 1;
+  color: #161616;
+}
+
+.floating-work-btn:hover .floating-work-icon {
+  opacity: 1;
+  color: #161616;
+  transform: translate(2px, -2px);
+}
+
+.floating-work-btn:active {
+  transform: translateY(-1px) scale(0.97);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.floating-work-btn:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 3px;
+}
+
+/* Entrance Animation: Smooth slide-up with spring settle after 0.65s delay */
+@keyframes floatWorkEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.94);
+  }
+  65% {
+    opacity: 0.95;
+    transform: translateY(-3px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Ambient Subtle Float Animation: Quiet breathing without brightness spikes */
+@keyframes floatWorkAmbient {
+  0%, 100% {
+    transform: translateY(0);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+  50% {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.42);
+  }
+}
+
+/* Hide cleanly when mobile menu drawer is open */
+body.menu-open .floating-work-btn {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Responsive adjustments for Mobile & Tablet */
+@media (max-width: 768px) {
+  .floating-work-btn {
+    bottom: max(18px, env(safe-area-inset-bottom, 18px));
+    right: 16px;
+    padding: 10px 18px;
+    font-size: 13.5px;
+    gap: 7px;
+    border-radius: 7px;
+    border-width: 1.2px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  }
+
+  .floating-work-icon svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Extra small devices (<= 380px) */
+@media (max-width: 380px) {
+  .floating-work-btn {
+    bottom: max(14px, env(safe-area-inset-bottom, 14px));
+    right: 12px;
+    padding: 8px 14px;
+    font-size: 12px;
+    gap: 6px;
   }
 }

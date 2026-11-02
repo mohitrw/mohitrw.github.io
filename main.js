@@ -797,17 +797,72 @@ function initWhatIDoScrollSelection() {
 }
 
 /**
- * Initialize Contact Page Minimal Form Submission & Validation
+ * Initialize Contact Page Minimal Form Submission with Web3Forms & Custom Success Pop-Up
  */
 function initContactForm() {
   const form = document.getElementById('contactForm');
   const statusMsg = document.getElementById('formStatusMsg');
   const proceedBtn = document.getElementById('contactProceedBtn');
+  const successModal = document.getElementById('contactSuccessModal');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  const modalConfirmBtn = document.getElementById('modalConfirmBtn');
 
-  if (!form || !statusMsg) return;
+  if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  let isSubmitting = false;
+
+  // Open custom success modal
+  function openSuccessModal() {
+    if (!successModal) return;
+    successModal.classList.add('is-open');
+    successModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    if (modalConfirmBtn) {
+      setTimeout(() => modalConfirmBtn.focus(), 80);
+    }
+  }
+
+  // Close custom success modal
+  function closeSuccessModal() {
+    if (!successModal) return;
+    successModal.classList.remove('is-open');
+    successModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    if (proceedBtn) {
+      proceedBtn.focus();
+    }
+  }
+
+  // Dismiss modal via buttons
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', closeSuccessModal);
+  }
+  if (modalConfirmBtn) {
+    modalConfirmBtn.addEventListener('click', closeSuccessModal);
+  }
+
+  // Dismiss modal by clicking outside on backdrop
+  if (successModal) {
+    successModal.addEventListener('click', (e) => {
+      if (e.target === successModal) {
+        closeSuccessModal();
+      }
+    });
+  }
+
+  // Dismiss modal via keyboard (Escape key)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && successModal && successModal.classList.contains('is-open')) {
+      closeSuccessModal();
+    }
+  });
+
+  // Handle Form Submission
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Prevent duplicate submissions while in progress
+    if (isSubmitting) return;
 
     const nameInput = document.getElementById('contactName');
     const emailInput = document.getElementById('contactEmail');
@@ -817,49 +872,166 @@ function initContactForm() {
     const email = emailInput ? emailInput.value.trim() : '';
     const message = messageInput ? messageInput.value.trim() : '';
 
+    // Clear previous status
+    if (statusMsg) {
+      statusMsg.textContent = '';
+      statusMsg.classList.remove('is-error', 'is-visible');
+    }
+
+    // Required fields validation
     if (!name || !email || !message) {
-      statusMsg.textContent = 'Please fill in all fields.';
-      statusMsg.classList.add('is-error', 'is-visible');
+      if (statusMsg) {
+        statusMsg.textContent = 'Please fill in all fields.';
+        statusMsg.classList.add('is-error', 'is-visible');
+      }
+      if (!name && nameInput) nameInput.focus();
+      else if (!email && emailInput) emailInput.focus();
+      else if (!message && messageInput) messageInput.focus();
       return;
     }
 
-    // Email validation
+    // Email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      statusMsg.textContent = 'Please enter a valid email address.';
-      statusMsg.classList.add('is-error', 'is-visible');
+      if (statusMsg) {
+        statusMsg.textContent = 'Please enter a valid email address.';
+        statusMsg.classList.add('is-error', 'is-visible');
+      }
+      if (emailInput) emailInput.focus();
       return;
     }
 
-    // Success State
-    statusMsg.textContent = 'Thank you! Message received.';
-    statusMsg.classList.remove('is-error');
-    statusMsg.classList.add('is-visible');
-
+    // Lock submission & show loading state
+    isSubmitting = true;
     if (proceedBtn) {
-      proceedBtn.textContent = 'Sent ✓';
       proceedBtn.disabled = true;
+      proceedBtn.innerHTML = '<span class="contact-btn-spinner" aria-hidden="true"></span>Sending...';
     }
 
-    // Reset after 3.5s
-    setTimeout(() => {
-      form.reset();
-      statusMsg.classList.remove('is-visible');
-      if (proceedBtn) {
-        proceedBtn.textContent = 'Proceed';
-        proceedBtn.disabled = false;
+    try {
+      const formData = new FormData(form);
+      const jsonObject = Object.fromEntries(formData.entries());
+
+      // Ensure access_key is set to user's Web3Forms access key
+      if (!jsonObject.access_key) {
+        jsonObject.access_key = '92028fcf-a97e-41ae-a2ba-775df10412e0';
       }
-    }, 3500);
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(jsonObject)
+      });
+
+      const result = await response.json();
+
+      if (response.status === 200 && result.success) {
+        // Success: Reset form inputs and open success pop-up
+        form.reset();
+
+        if (statusMsg) {
+          statusMsg.textContent = '';
+          statusMsg.classList.remove('is-error', 'is-visible');
+        }
+
+        openSuccessModal();
+      } else {
+        // Handled submission error from Web3Forms
+        const errorMsg = (result && result.message) ? result.message : 'Submission failed. Please try again.';
+        if (statusMsg) {
+          statusMsg.textContent = errorMsg;
+          statusMsg.classList.add('is-error', 'is-visible');
+        }
+      }
+    } catch (err) {
+      // Network error or unexpected rejection
+      if (statusMsg) {
+        statusMsg.textContent = 'Network error. Please check your connection or reach out on socials.';
+        statusMsg.classList.add('is-error', 'is-visible');
+      }
+    } finally {
+      // Unlock submission and restore proceed button
+      isSubmitting = false;
+      if (proceedBtn) {
+        proceedBtn.disabled = false;
+        proceedBtn.innerHTML = 'Proceed';
+      }
+    }
   });
 }
 
 /**
  * Initialize Contact Page Quick Query Expandable Drawer (#7F7F7F)
+ * Supports URL query parameters & homepage footer shortcuts to auto-fill the message textarea
  */
 function initQuickQueryDrawer() {
   const queryCard = document.getElementById('quickQueryCard');
   const queryButtons = document.querySelectorAll('.qq-option-btn');
   const messageInput = document.getElementById('contactMessage');
+
+  // Check URL parameters or session storage for pre-filling query from footer buttons (e.g. contact.html?query=meet)
+  if (messageInput) {
+    let rawQuery = '';
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      rawQuery = urlParams.get('query') || urlParams.get('q') || urlParams.get('message') || '';
+      if (!rawQuery) {
+        rawQuery = sessionStorage.getItem('contact_prefill_query') || '';
+        sessionStorage.removeItem('contact_prefill_query');
+      }
+    } catch (e) {
+      console.warn('Query param inspection error:', e);
+    }
+
+    if (rawQuery) {
+      const qLower = rawQuery.toLowerCase();
+      let textToFill = '';
+
+      if (qLower === 'meet' || qLower.includes('meet')) {
+        textToFill = 'I would like to book a Google Meet to discuss a new design project.';
+      } else if (qLower === 'brand' || qLower.includes('brand')) {
+        textToFill = 'I want to create a brand identity and logo design for my business.';
+      } else if (qLower === 'site' || qLower.includes('site')) {
+        textToFill = 'I need a quick, modern, and responsive website built efficiently.';
+      } else if (qLower === 'template' || qLower.includes('template')) {
+        textToFill = 'I want a custom Figma or Wix Studio template tailored to my specifications.';
+      } else if (qLower === 'mobile' || qLower.includes('mobile')) {
+        textToFill = 'I want a dedicated mobile version and responsive optimization for my website.';
+      } else {
+        textToFill = rawQuery;
+      }
+
+      if (textToFill) {
+        messageInput.value = textToFill;
+        // Position cursor at end of input
+        setTimeout(() => {
+          messageInput.focus();
+          messageInput.setSelectionRange(messageInput.value.length, messageInput.value.length);
+        }, 120);
+      }
+    }
+  }
+
+  // Footer Action Buttons navigation & sessionStorage fallback (runs on index.html)
+  const footerActionRow = document.querySelector('.footer-action-row');
+  if (footerActionRow) {
+    footerActionRow.querySelectorAll('.footer-dashed-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const href = btn.getAttribute('href');
+        if (href && href.includes('query=')) {
+          const match = href.match(/query=([^&]+)/);
+          if (match && match[1]) {
+            try {
+              sessionStorage.setItem('contact_prefill_query', match[1]);
+            } catch (err) {}
+          }
+        }
+      });
+    });
+  }
 
   if (!queryCard) return;
 
