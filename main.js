@@ -1454,10 +1454,14 @@ function initProjectCaseStudy() {
       }
     });
 
-    // View live site / design button inside tech card scrolls smoothly to relevant step
+    // View live site / design button inside tech card scrolls smoothly to relevant step (unless it links to an external site)
     const liveSiteBtn = overlay.querySelector('.case-live-btn');
     if (liveSiteBtn) {
       liveSiteBtn.addEventListener('click', (e) => {
+        if (liveSiteBtn.hasAttribute('href') || liveSiteBtn.hasAttribute('onclick')) {
+          e.stopPropagation();
+          return;
+        }
         e.stopPropagation();
         const targetStep = overlay.querySelector('.timeline-step[data-step="4"]') || overlay.querySelector('.timeline-step[data-step="3"]');
         if (targetStep) {
