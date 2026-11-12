@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Zone configuration & active zone mapping
   const ZONE_CONFIG = {
     home: { label: 'Home', color: '#FFFFFF' },
-    coding: { label: 'Front-End Projects', color: '#47F2E0' },
-    sketches: { label: 'Sketchbook', color: '#FFB74D' },
-    ui: { label: 'Design Projects', color: '#B388FF' },
-    hire: { label: 'Hire Me', color: '#00E5FF' }
+    coding: { label: 'Front-End Projects', color: '#D0D0D0' },
+    sketches: { label: 'Sketchbook', color: '#A6A6A6' },
+    ui: { label: 'Design Projects', color: '#E2E2E2' },
+    hire: { label: 'Hire Me', color: '#FFFFFF' }
   };
   let currentZoneKey = 'home';
   let previewZoneKey = null;
@@ -140,6 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * Mouse Drag-to-Pan (Figma Hand Tool behavior)
    */
   viewport.addEventListener('mousedown', (e) => {
+    if (e.sourceCapabilities?.firesTouchEvents) return;
     // If clicking a control or button or link, don't drag
     if (e.target.closest('.canvas-controls-panel') || 
         e.target.closest('.canvas-minimap-wrap') || 
@@ -180,38 +181,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /**
-   * Touch Pan Support for Mobile / Tablets
+   * Native Touch Pan Support for Mobile / Tablets
+   * Let the browser's GPU compositor drive X/Y scrolling & momentum inertia natively;
+   * only clear drag flag on touchstart so card taps remain reliable.
    */
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchScrollX = 0;
-  let touchScrollY = 0;
-
-  viewport.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 1) {
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
-      touchScrollX = viewport.scrollLeft;
-      touchScrollY = viewport.scrollTop;
-    }
-  }, { passive: true });
-
-  viewport.addEventListener('touchmove', (e) => {
-    if (e.touches.length === 1) {
-      const dx = e.touches[0].clientX - touchStartX;
-      const dy = e.touches[0].clientY - touchStartY;
-      viewport.scrollLeft = touchScrollX - dx;
-      viewport.scrollTop = touchScrollY - dy;
-      updateMinimap();
-    }
+  viewport.addEventListener('touchstart', () => {
+    hasMoved = false;
   }, { passive: true });
 
   /**
-   * Scroll listener to update minimap live
+   * Scroll listener to update minimap live without extra rAF nesting
    */
-  viewport.addEventListener('scroll', () => {
-    requestAnimationFrame(updateMinimap);
-  }, { passive: true });
+  viewport.addEventListener('scroll', updateMinimap, { passive: true });
 
   /**
    * Wheel Event: Ctrl+Wheel or Pinch zooms into cursor; regular wheel pans
@@ -297,6 +278,8 @@ document.addEventListener('DOMContentLoaded', () => {
    * Coalesced into requestAnimationFrame to prevent layout thrashing
    */
   let minimapRafPending = false;
+  let lastRadarW = -1;
+  let lastRadarH = -1;
 
   function updateMinimap() {
     if (minimapRafPending) return;
@@ -317,8 +300,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const radarX = (viewport.scrollLeft / totalBoardW) * cachedMiniW;
     const radarY = (viewport.scrollTop / totalBoardH) * cachedMiniH;
 
-    minimapRadar.style.width = `${radarW}px`;
-    minimapRadar.style.height = `${radarH}px`;
+    if (Math.abs(radarW - lastRadarW) > 0.1 || Math.abs(radarH - lastRadarH) > 0.1) {
+      lastRadarW = radarW;
+      lastRadarH = radarH;
+      minimapRadar.style.width = `${radarW}px`;
+      minimapRadar.style.height = `${radarH}px`;
+    }
     minimapRadar.style.transform = `translate3d(${radarX}px, ${radarY}px, 0)`;
 
     // Check if active zone changed and update indicator

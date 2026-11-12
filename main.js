@@ -9,6 +9,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbarScroll();
+  initFloatingWorkButton();
   initSkillCards();
   initFloatingTags();
   initAboutRoleCards();
@@ -73,6 +74,46 @@ function initNavbarScroll() {
       ticking = true;
     }
   }, { passive: true });
+}
+
+/**
+ * Homepage Floating "View My Work" Button Scroll Visibility
+ * - Hidden while on the Hero section
+ * - Reveals smoothly when scrolled down onto the Projects section
+ * - Exits symmetrically with the reverse animation when scrolling back up to Hero
+ */
+function initFloatingWorkButton() {
+  const workBtn = document.getElementById('floatingWorkBtn');
+  const projectsSection = document.getElementById('projects');
+  if (!workBtn || !projectsSection) return;
+
+  let ticking = false;
+
+  const updateVisibility = () => {
+    const rect = projectsSection.getBoundingClientRect();
+    // Show once Projects moves past the bottom 25% of the viewport (keeps Hero completely clean)
+    const shouldShow = rect.top <= window.innerHeight * 0.75;
+    workBtn.classList.toggle('is-visible', shouldShow);
+    ticking = false;
+  };
+
+  const requestUpdate = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateVisibility);
+      ticking = true;
+    }
+  };
+
+  updateVisibility();
+  // Capture-phase listener on document + direct body/window listeners because html/body use height: 100%; overflow-x: hidden
+  document.addEventListener('scroll', requestUpdate, { capture: true, passive: true });
+  document.body.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('wheel', requestUpdate, { passive: true });
+  window.addEventListener('touchmove', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate, { passive: true });
+  window.addEventListener('load', updateVisibility);
+  window.addEventListener('pageshow', updateVisibility);
 }
 
 /**
@@ -620,6 +661,22 @@ function initWhatIDoScrollSelection() {
   if (!hasPanels) return;
 
   const tabControllers = {};
+  const isMobileScrollMode = () => window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+  function findNearestItemIndex(items, focalY) {
+    let closestIndex = 0;
+    let minDistance = Infinity;
+    items.forEach((item, idx) => {
+      const rect = item.getBoundingClientRect();
+      const itemCenter = rect.top + rect.height / 2;
+      const distance = Math.abs(itemCenter - focalY);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = idx;
+      }
+    });
+    return closestIndex;
+  }
 
   let isTicking = false;
   let lastPointerX = null;
@@ -658,10 +715,10 @@ function initWhatIDoScrollSelection() {
       getActiveIndex: () => activeIndex
     };
 
-    // Instant pointer hover detection on list items
+    // Instant pointer hover detection on list items (desktop pointer mode)
     if (servicesList) {
       servicesList.addEventListener('pointermove', (e) => {
-        if (e.pointerType === 'touch') return;
+        if (e.pointerType === 'touch' || isMobileScrollMode()) return;
         lastPointerX = e.clientX;
         lastPointerY = e.clientY;
 
@@ -678,7 +735,7 @@ function initWhatIDoScrollSelection() {
     // Hover, Click & Keyboard handlers on each individual item
     items.forEach((item, idx) => {
       item.addEventListener('pointerenter', (e) => {
-        if (e.pointerType === 'touch') return;
+        if (e.pointerType === 'touch' || isMobileScrollMode()) return;
         setActiveItem(idx);
       });
 
@@ -743,9 +800,10 @@ function initWhatIDoScrollSelection() {
       }
 
       const items = currentActiveController.items;
+      const mobileMode = isMobileScrollMode();
 
-      // 1. If cursor is over an item during trackpad 2-finger scroll or wheel scroll:
-      if (lastPointerX !== null && lastPointerY !== null) {
+      // 1. Desktop only: if cursor is over an item during trackpad/wheel scroll:
+      if (!mobileMode && lastPointerX !== null && lastPointerY !== null) {
         const elUnderCursor = document.elementFromPoint(lastPointerX, lastPointerY);
         const hoveredItem = elUnderCursor ? elUnderCursor.closest('.what-i-do-item') : null;
         if (hoveredItem && currentActiveController.panel.contains(hoveredItem)) {
@@ -758,29 +816,41 @@ function initWhatIDoScrollSelection() {
         }
       }
 
-      // 2. Otherwise, use viewport focal trigger line (~48% from top of screen)
-      const triggerY = window.innerHeight * 0.48;
-      let closestIndex = 0;
-      let minDistance = Infinity;
-
       const firstRect = items[0].getBoundingClientRect();
       const lastRect = items[items.length - 1].getBoundingClientRect();
+      let closestIndex = 0;
 
-      if (firstRect.top > triggerY) {
-        closestIndex = 0;
-      } else if (lastRect.bottom < triggerY) {
-        closestIndex = items.length - 1;
+      if (mobileMode) {
+        // Mobile scroll-driven progression across the full list (including momentum & bottom items)
+        const scroller = (document.body.scrollHeight > document.body.clientHeight + 2)
+          ? document.body
+          : (document.scrollingElement || document.documentElement);
+        const maxScroll = Math.max(0, scroller.scrollHeight - scroller.clientHeight);
+        const remainingScroll = Math.max(0, maxScroll - scroller.scrollTop);
+        const startY = window.innerHeight * 0.42;
+
+        if (firstRect.top >= startY) {
+          closestIndex = 0;
+        } else if (remainingScroll <= 4) {
+          closestIndex = items.length - 1;
+        } else {
+          const finalLastCenter = (lastRect.top + lastRect.height / 2) - remainingScroll;
+          const scrolledIntoList = Math.max(0, startY - firstRect.top);
+          const totalSpan = Math.max(1, scrolledIntoList + remainingScroll);
+          const progress = Math.min(1, scrolledIntoList / totalSpan);
+          closestIndex = findNearestItemIndex(items, startY + progress * (finalLastCenter - startY));
+        }
       } else {
-        items.forEach((item, idx) => {
-          const rect = item.getBoundingClientRect();
-          const itemCenter = rect.top + rect.height / 2;
-          const distance = Math.abs(itemCenter - triggerY);
+        // 2. Desktop fallback: viewport focal trigger line (~48% from top of screen)
+        const triggerY = window.innerHeight * 0.48;
 
-          if (distance < minDistance) {
-            minDistance = distance;
-            closestIndex = idx;
-          }
-        });
+        if (firstRect.top > triggerY) {
+          closestIndex = 0;
+        } else if (lastRect.bottom < triggerY) {
+          closestIndex = items.length - 1;
+        } else {
+          closestIndex = findNearestItemIndex(items, triggerY);
+        }
       }
 
       currentActiveController.setActiveItem(closestIndex);
@@ -788,8 +858,12 @@ function initWhatIDoScrollSelection() {
     });
   }
 
+  // Listen in capture phase + body/window because html/body use height: 100%; overflow-x: hidden
+  document.addEventListener('scroll', handleScrollOrWheel, { capture: true, passive: true });
+  document.body.addEventListener('scroll', handleScrollOrWheel, { passive: true });
   window.addEventListener('scroll', handleScrollOrWheel, { passive: true });
   window.addEventListener('wheel', handleScrollOrWheel, { passive: true });
+  window.addEventListener('touchmove', handleScrollOrWheel, { passive: true });
   window.addEventListener('resize', handleScrollOrWheel, { passive: true });
 
   // Run initial state calculation
